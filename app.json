@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/home/home",
     "pages/index/index",
     "pages/logs/logs",
     "pages/my/my",
@@ -17,7 +18,7 @@
   "sitemapLocation": "sitemap.json",
   "tabBar": {
     "list": [{
-      "pagePath": "pages/index/index",
+      "pagePath": "pages/home/home",
       "iconPath": "icon/index.png",
       "selectedIconPath": "icon/select_index.png",
       "text": "首页"
