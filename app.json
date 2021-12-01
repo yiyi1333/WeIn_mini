@@ -2,10 +2,10 @@
   "pages":[
     "pages/home/home",
     "pages/index/index",
-    "pages/logs/logs",
     "pages/my/my",
     "pages/cart/cart",
-    "pages/classify/classify"
+    "pages/classify/classify",
+    "pages/search/search"
   ],
   "window":{
     "backgroundTextStyle":"dark",
