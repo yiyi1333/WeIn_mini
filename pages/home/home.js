@@ -1,4 +1,4 @@
-// pages/home/home.js
+
 Page({
 
   /**
@@ -13,8 +13,9 @@ Page({
    */
   onLoad: function (options) {
     //发送请求获取轮播图数据
+    var app =  getApp()
     wx.request({
-      url: 'https://3c5f-115-200-29-88.ngrok.io/spring_prj1_Web_exploded/advertisement.action',
+      url:app.globalData.host + 'advertisement.action',
       success:(reslut) =>{
         console.log(reslut);
         this.setData({

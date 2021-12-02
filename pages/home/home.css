@@ -1,0 +1,21 @@
+.home_classfiy {
+  display: flex;
+  text-align: center;
+}
+.home_classfiy navigator {
+  padding: 24rpx;
+  flex: 1;
+}
+.home_classfiy navigator image {
+  width: 100%;
+}
+.goodslist {
+  display: flex;
+  text-align: left;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.goodslist navigator {
+  flex: 1 0 50%;
+  flex-wrap: wrap;
+}

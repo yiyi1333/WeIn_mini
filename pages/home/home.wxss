@@ -5,3 +5,37 @@ swiper{
 image{
   width: 100%;
 }
+.home_classfiy {
+  display: flex;
+  text-align: center;
+}
+.home_classfiy navigator {
+  padding: 24rpx;
+  flex: 1;
+}
+.home_classfiy navigator image {
+  width: 100%;
+}
+.goodslist {
+  display: flex;
+  text-align: left;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.goodslist navigator {
+  padding: 20rpx;
+  margin: 10rpx;
+  border-color: white;
+  background-color: white;
+  border-style: solid;
+  border-radius: 30rpx;
+  flex: 1 0 38%;
+  flex-wrap: wrap;
+}
+.goodslist .text_view{
+  display: flex;
+  flex-direction: column;
+}
+.goodslist .price{
+  color: red;
+}

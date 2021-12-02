@@ -5,7 +5,6 @@ App({
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
     // 登录
     wx.login({
       success: res => {
@@ -14,6 +13,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    host: 'https://c358-115-200-29-88.ngrok.io/spring_prj1_Web_exploded/'
   }
 })

@@ -1,10 +1,64 @@
 <view class="home">
+<!-- 搜索框 -->
     <SearchInput></SearchInput>
-</view>
-<view class="advertising">
-    <swiper indicator-dots="true" indicator-active-color="#12a8a9" autoplay="true" circular="true">
-        <swiper-item wx:for="{{swiperlist}}" wx:key="{{advertisementId}}">
-            <navigator url="{{item.advertisementUrl}}" open-type="redirect"><image mode="widthFix" src="{{item.advertisementPictureUrl}}"/></navigator>
-        </swiper-item>
-    </swiper>
+    <!-- 轮播广告 -->
+    <view class="advertising">
+        <swiper indicator-dots="true" indicator-active-color="#12a8a9" autoplay="true" circular="true">
+            <swiper-item wx:for="{{swiperlist}}" wx:key="{{advertisementId}}">
+                <navigator url="{{item.advertisementUrl}}" open-type="redirect">
+                    <image mode="widthFix" src="{{item.advertisementPictureUrl}}"/>
+                </navigator>
+            </swiper-item>
+        </swiper>
+    </view>
+    <!-- 专区分类 -->
+    <view class="home_classfiy">
+        <navigator>
+            <image mode="widthFix" src="../../icon/computer.png"/>
+            <text>电脑办公</text>
+        </navigator>
+        <navigator>
+            <image mode="widthFix" src="../../icon/phone.png"/>
+            <text>手机</text>
+        </navigator>
+        <navigator>
+            <image mode="widthFix" src="../../icon/watch.png"/>
+            <text>智能手表</text>
+        </navigator>
+        <navigator>
+            <image mode="widthFix" src="../../icon/music.png"/>
+            <text>娱乐影音</text>
+        </navigator>
+    </view>
+    <!-- 推荐商品 -->
+    <view class="goodslist">
+        <navigator>
+            <image mode="widthFix" src="https://img13.360buyimg.com/n7/jfs/t1/136417/37/15605/47478/5fab07d4E29dac997/16031dfdd5207c0e.jpg"/>
+            <view class="text_view">
+                <text class="description">Apple MacBook Pro 13.3 新款八核M1芯片 8G 256G </text>
+                <text class="price">￥9999</text>
+            </view>
+        </navigator>
+        <navigator>
+            <image mode="widthFix" src="https://img14.360buyimg.com/n7/jfs/t1/117402/40/5319/122863/5eb2c3fcEca38019c/15285049766a8f59.jpg"/>
+            <view class="text_view">
+                <text class="description">Apple 2020款 MacBook Pro 13.3【带触控栏】十代i5</text>
+                <text class="price">￥13699</text>
+            </view>
+        </navigator>
+        <navigator>
+            <image mode="widthFix" src="https://img11.360buyimg.com/n7/jfs/t1/201575/39/12207/100854/616dd075Ec944c8eb/dd12490fd0f23937.jpg"/>
+            <view class="text_view">
+                <text class="description">Apple MacBook Pro 16英寸 M1 Pro芯片(10核中央处理器)</text>
+                <text class="price">￥18999</text>
+            </view>
+        </navigator>
+        <navigator>
+            <image mode="widthFix" src="https://img10.360buyimg.com/n7/jfs/t1/146378/24/14918/28991/5fb62ddbE42a7379f/9478962430f6f10f.jpg"/>
+            <view class="text_view">
+                <text class="description">Apple MacBook Air 13.3 新款8核M1芯片(7核图形处理器)</text>
+                <text class="price">￥8599</text>
+            </view>
+        </navigator>
+    </view>
 </view>
