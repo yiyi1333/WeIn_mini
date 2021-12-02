@@ -3,9 +3,8 @@
 </view>
 <view class="advertising">
     <swiper indicator-dots="true" indicator-active-color="#12a8a9" autoplay="true" circular="true">
-        <swiper-item><navigator url="/pages/index/inedx" open-type="redirect"><image mode="widthFix" src="https://i.loli.net/2021/11/30/BPpRYsO6VWvqceN.png"/></navigator></swiper-item>
-        <swiper-item><navigator url="/pages/index/index" open-type="redirect"><image mode="widthFix" src="https://i.loli.net/2021/11/30/xXKkJyB8rNzW1AV.png"/></navigator></swiper-item>
-        <swiper-item><navigator url="/pages/index/index" open-type="redirect"><image mode="widthFix" src="https://i.loli.net/2021/11/30/4So3ZJcOUmsj57k.png"/></navigator></swiper-item>
-        <swiper-item><navigator url="/pages/index/index" open-type="redirect"><image mode="widthFix" src="https://i.loli.net/2021/11/30/gYG3FwXjtyKTU28.png"/></navigator></swiper-item>
+        <swiper-item wx:for="{{swiperlist}}" wx:key="{{advertisementId}}">
+            <navigator url="{{item.advertisementUrl}}" open-type="redirect"><image mode="widthFix" src="{{item.advertisementPictureUrl}}"/></navigator>
+        </swiper-item>
     </swiper>
 </view>

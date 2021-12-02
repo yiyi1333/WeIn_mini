@@ -5,14 +5,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    swiperlist:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    //发送请求获取轮播图数据
+    wx.request({
+      url: 'https://3c5f-115-200-29-88.ngrok.io/spring_prj1_Web_exploded/advertisement.action',
+      success:(reslut) =>{
+        console.log(reslut);
+        this.setData({
+          swiperlist:reslut.data
+        })
+      }
+    })
   },
 
   /**
