@@ -1,66 +1,45 @@
 /*
  * @Author: your name
- * @Date: 2021-12-01 23:21:16
- * @LastEditTime: 2021-12-03 19:51:30
+ * @Date: 2021-12-03 20:09:26
+ * @LastEditTime: 2021-12-03 21:02:23
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: \WeIn\pages\search\search.js
+ * @FilePath: \WeIn\pages\detail\detail.js
  */
-// pages/search/search.js
+// pages/detail/detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    goodslist:[],
+    goodobject:null
   },
-  //输入框改变之后就会触发
-  handleInput(e){
-    //获取输入框的值
-    const {value}=e.detail;
-    if(!value.trim()){
-      return;
-    }
-    var app =  getApp()
-    wx.request({
-      url:app.globalData.host + 'search',
-      data:{
-        keyword: value
-      },
-      success:(result)=>{
-        console.log(result);
-        this.setData({
-          goodslist:result.data
-        })
-      }
-    })
-  },
-  // searchgoods(e){
-  //   var keyword = this.data.keyword
-  //   if(!keyword.trim()){
-  //     return;
-  //   }
-  //   var app =  getApp()
-  //   wx.request({
-  //     url:app.globalData.host + 'search',
-  //     data:{
-  //       keyword: keyword
-  //     },
-  //     success:(result)=>{
-  //       console.log(result);
-  //       this.setData({
-  //         goodslist:result.data
-  //       })
-  //     }
-  //   })
-  // },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //获取goodsID;
+    const {goodsId}=options;
+    console.log("goodsID:" + goodsId);
+    this.getGoodsDetail(goodsId);
+  },
 
+  getGoodsDetail(goodsId){
+    var app =  getApp()
+    wx.request({
+      url:app.globalData.host + 'displayGoodsDetail',
+      data:{
+        goodsId:goodsId
+      },
+      success:(result)=>{
+        console.log(result);
+        this.setData({
+          goodobject:result.data
+        })
+      }
+    })
   },
 
   /**

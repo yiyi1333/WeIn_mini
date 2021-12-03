@@ -1,2 +1,3 @@
-<!--pages/classify/classify.wxml-->
-<text>pages/classify/classify.wxml</text>
+<view class="classfiy">
+  <SearchInput></SearchInput>
+</view>

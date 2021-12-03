@@ -1,0 +1,35 @@
+<view class="detail_picture">
+    <image mode="widthFix" src="{{goodobject.goodsImage}}"/>
+</view>
+<view class="goodprice">￥{{goodobject.goodsPrice}}</view>
+<view class="detail_description">
+    <view class="goodsname">{{goodobject.goodsName}}</view>
+    <view class="goodscollect">
+        <text class="iconfont icon-shoucang"></text>
+        <view class="collect_text">收藏</view>
+    </view>
+</view>
+
+<view class="bottom_tool">
+    <view class="tool_item">
+        <view class="iconfont icon-dianpu"></view>
+        <view>店铺</view>
+    </view>
+    <view class="tool_item">
+        <view class="iconfont icon-fenxiang"></view>
+        <view>分享</view>
+        <button open-type="share"></button>
+    </view>
+    <view class="tool_item">
+        <view class="iconfont icon-kefu"></view>
+        <view>客服</view>
+        <button open-type="contact"></button>
+    </view>
+    <navigator url="/pages/cart/cart" open-type="switchTab" class="tool_item">
+        <view class="iconfont icon-gouwucheman"></view>
+        <view>购物车</view>
+    </navigator>
+    <view class="tool_item button_cart">
+        <view>加入购物车</view>
+    </view>
+</view>

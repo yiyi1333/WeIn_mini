@@ -1,2 +1,15 @@
-<!--pages/search/search.wxml-->
-<text>pages/search/search.wxml</text>
+<view class="search_row">
+  <input placeholder="请输入您要搜索的商品的关键词" bindinput="handleInput"></input>
+  <!-- <button style="width:180rpx; margin:0 10rpx;" bindtap="searchgoods">搜索</button> -->
+</view>
+<view class="search_content">
+  <view class="search_item">
+    <navigator wx:for="{{goodslist}}" wx:key="{{goodsId}}" url="../../pages/detail/detail?goodsId={{item.goodsId}}">
+        <image mode="widthFix" src="{{item.goodsImage}}"/>
+        <view class="text_view">
+          <text class="description">{{item.goodsName}}</text>
+          <text class="price">￥{{item.goodsPrice}}</text>
+        </view>
+    </navigator>
+  </view>
+</view>
