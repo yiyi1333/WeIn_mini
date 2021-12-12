@@ -1,2 +1,65 @@
-<!--pages/cart/cart.wxml-->
-<view bindtap="click">{{num}}</view>
+<view class="cart_content">
+  <view class="cart_main">
+    <block wx:if="{{shops.length!=0}}">
+      <view class="shop_wrap" wx:for="{{shops}}" wx:key="{{shop.shopId}}">
+        <view class="shop">
+          <view class="shop_check_wrap">
+            <checkbox-group data-id="{{item.shop.shopId}}" bindchange="shopallcheck">
+              <checkbox checked="{{item.checked}}"></checkbox>
+            </checkbox-group>
+          </view>
+          <view class="shop_name">
+            <navigator>{{item.shop.shopName}}</navigator>
+          </view>
+        </view>
+        <view class="cart_item" wx:for="{{item.goodslist}}" wx:key="{{goods.goodsId}}" wx:for-item="j">
+          <!-- 复选框 -->
+          <view class="cart_check_wrap">
+            <checkbox-group data-id="{{j.goods.goodsId}}" bindchange="handeItemChange">
+              <checkbox checked="{{j.checked}}"></checkbox>
+            </checkbox-group>
+          </view>
+          <!-- 商品图片 -->
+          <navigator class="cart_imt_wrap">
+            <image mode="widthFix" src="{{j.goods.goodsImage}}"></image>
+          </navigator>
+          <!-- 商品信息 -->
+          <view class="cart_info_wrap">
+            <view class="goods_name">{{j.goods.goodsName}}</view>
+            <view class="goods_price_wrap">
+              <view class="goods_price">￥{{j.goods.goodsPrice}}</view>
+              <view class="cart_bum_tool">
+                <view class="num_edit" bindtap="ItemNumEdit" data-id="{{j.goods.goodsId}}" data-op="{{-1}}">-</view>
+                <view class="goods_num">{{j.goodsnum}}</view>
+                <view class="num_edit" bindtap="ItemNumEdit" data-id="{{j.goods.goodsId}}" data-op="{{1}}">+</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <!-- <block wx:else>
+      <image mode="heightFix" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170401%2F2f523043409747a9b68c1bcf6fd353a5_th.jpeg&refer=http%3A%2F%2Fimg.mp.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641915812&t=673d6f596251e526f459b1a1047f966f"></image>
+    </block> -->
+  </view>
+</view>
+
+<view class="footer_tool">
+  <!-- 全选 -->
+  <view class="all_check_wrap">
+    <checkbox-group bindchange="checkall">
+      <checkbox checked="{{allChecked}}">全选</checkbox>
+    </checkbox-group>
+  </view>
+  <!-- 总价格 -->
+  <view class="total_price_wrap">
+    <view class="total_price">
+      合计: <text class="total_price_text">￥{{totalPrice}}</text>
+    </view>
+    <view>包含运费</view>
+  </view>
+  <!-- 结算 -->
+  <view class="order_pay_wrap" bindtap="pay">
+    结算
+  </view>
+</view>

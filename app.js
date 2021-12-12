@@ -14,6 +14,6 @@ App({
   },
   globalData: {
     userInfo: null,
-    host: 'https://08d9-115-200-49-113.ngrok.io/spring_prj1_Web_exploded/'
+    host: 'https://61e3-115-200-39-82.ngrok.io/spring_prj1_Web_exploded/'
   }
 })

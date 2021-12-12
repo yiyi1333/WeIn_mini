@@ -6,7 +6,8 @@
     "pages/cart/cart",
     "pages/classify/classify",
     "pages/search/search",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/payment/payment"
   ],
   "window":{
     "backgroundTextStyle":"dark",
