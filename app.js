@@ -1,19 +1,20 @@
 // app.js
 App({
   onLaunch() {
-    // 展示本地存储能力
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
     // 登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res);
+        this.globalData.code = res.code;
       }
     })
   },
   globalData: {
     userInfo: null,
-    host: 'https://61e3-115-200-39-82.ngrok.io/spring_prj1_Web_exploded/'
+    host: 'https://624a-115-200-54-96.ngrok.io/spring_prj1_Web_exploded/',
+    code: null,
+    appid: "wxc1b5e6fadc4b321a",
+    appsecret: "a70d46afc23855a88469e5edbb80a6cd",
   }
 })
