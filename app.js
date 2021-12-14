@@ -12,7 +12,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    host: 'https://624a-115-200-54-96.ngrok.io/spring_prj1_Web_exploded/',
+    host: 'https://dbe6-115-200-25-44.ngrok.io/spring_prj1_Web_exploded/',
     code: null,
     appid: "wxc1b5e6fadc4b321a",
     appsecret: "a70d46afc23855a88469e5edbb80a6cd",

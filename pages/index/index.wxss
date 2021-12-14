@@ -1,19 +1,25 @@
-/**index.wxss**/
-.userinfo {
+.container .userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #aaa;
 }
-
-.userinfo-avatar {
+.container .userinfo .userinfo-avatar {
+  display: flex;
   overflow: hidden;
   width: 128rpx;
   height: 128rpx;
   margin: 20rpx;
   border-radius: 50%;
 }
-
+.container .userinfo .userinfo-nickname {
+  margin: 20rpx;
+  color: #2b4e4e;
+  font-size: 34rpx;
+}
+.container .userinfo .button {
+  margin-top: 300rpx;
+}
 .usermotto {
   margin-top: 200px;
 }

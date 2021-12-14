@@ -1,13 +1,13 @@
 <view class="container">
   <view class="userinfo">
-    <block wx:if="{{!hasUserInfo}}">
+    <!-- <block wx:if="{{!hasUserInfo}}">
       <button wx:if="{{canIUseGetUserProfile}}" type="primary" bindtap="getUserProfile"> 登录 </button>
       <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 登录 </button>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      <button open-type="getPhoneNumber" type="primary" bindgetphonenumber="getPhoneNumber">手机号登录</button>
+    </block> -->
+    <block>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="https://s2.loli.net/2021/12/14/pEDwVtxeWAvP1Jh.png" mode="cover"></image>
+      <text class="userinfo-nickname">WeIn集团内购系统</text>
+      <button class="button" open-type="getPhoneNumber" type="primary" bindgetphonenumber="getPhoneNumber">手机号登录</button>
     </block>
   </view>
 </view>
