@@ -1,2 +1,104 @@
-<!--pages/my/my.wxml-->
-<text>pages/my/my.wxml</text>
+<view class="user_info_wrap">
+    <view class="user_img_wrap">
+        <view class="user_head_contain">
+            <image class="user_img" src="{{user.consumer.avatarUrl}}"></image>
+            <view class="user_info">
+                <text class="user_nickname">{{user.consumer.nickName}}</text>
+                <view class="enterprise">
+                    <text wx:if="{{user.consumer.enterpriseDepartmentNumber != null}}" class="enterprise_text">{{user.enterprise.enterpriseName}}</text>
+                    <text wx:else class="enterprise_text">未认证企业用户</text>
+                    <image wx:if="{{user.consumer.enterpriseDepartmentNumber != null}}" class="enterprise_img" src="https://s2.loli.net/2021/12/14/khdyAIJtlzjrbDV.png"></image>
+                </view>
+                <view class="department">
+                    <text wx:if="{{user.consumer.enterpriseDepartmentNumber != null}}" class="department_text">{{user.enterpriseDepartment.enterpriseDepartmentName}}</text>
+                </view>
+            </view>
+            <view wx:if="{{user.consumer.nickName === '用户'}}" class="button_get" bindtap="getUserProfile">
+                <button class="get">授权</button>
+            </view>
+            <view wx:else class="button_get" style="visibility:hidden">
+                <button class="get">授权</button>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- 订单卡片 -->
+<view class="order_info_wrap">
+    <view class="order_header">
+        <text>我的订单</text>
+    </view>
+    <view class="order_info">
+            <!-- 全部订单 -->
+        <view class="all_order">
+            <navigator>
+                <image src="https://s2.loli.net/2021/12/14/sgbF1MjJhYLIe7c.png"></image>
+                <view>全部订单</view>
+            </navigator>
+        </view>
+        <!-- 待付款 -->
+        <view class="waitpay_order">
+            <navigator>
+                <image src="https://s2.loli.net/2021/12/14/NmHA8eq1rYKhVPt.png"></image>
+                <view>待付款</view>
+            </navigator>
+        </view>
+        <!-- 待收货订单 -->
+        <view class="waitreceive_order">
+            <navigator>
+                <image src="https://s2.loli.net/2021/12/14/V7ahlJwTWnOvSyz.png"></image>
+                <view>待收货</view>
+            </navigator>
+        </view>
+        <!-- 退换货订单 -->
+        <view class="exchanged_order">
+            <navigator>
+                <image src="https://s2.loli.net/2021/12/14/V2TeSDMA9CIgX7O.png"></image>
+                <view>退换货</view>
+            </navigator>
+        </view>
+    </view>
+</view>
+
+<!-- 地址管理入口 -->
+
+<view class="address_wrap">
+    <navigator class="address">
+        <image class="address_img" src="https://s2.loli.net/2021/12/14/NbdhH7U6MXRcn5f.png"></image>
+        <view class="address_text">收货地址管理</view>
+    </navigator>
+</view>
+
+<!-- 实名认证入口 -->
+<view class="certification_wrap">
+    <navigator class="certification">
+        <image class="certification_img" src="https://s2.loli.net/2021/12/14/pw81xYlZm9LvSdN.png"></image>
+        <view class="certification_text">实名认证</view>
+    </navigator>
+</view>
+<!-- 其它模块入口 -->
+<view class="other_wrap">
+    <navigator class="model0">
+        <image class="model_img" src="https://s2.loli.net/2021/12/14/MBq9athRFJeXksd.png"></image>
+        <view class="model_text">我的优惠券</view>
+    </navigator>
+    <navigator class="model">
+        <image class="model_img" src="https://s2.loli.net/2021/12/14/wPR5Np4IgrlUH3X.png"></image>
+        <view class="model_text">收藏夹</view>
+    </navigator>
+    <navigator class="model">
+        <image class="model_img" src="https://s2.loli.net/2021/12/14/8bCwyeQutHDvE2m.png"></image>
+        <view class="model_text">历史足迹</view>
+    </navigator>
+    <navigator class="model">
+        <image class="model_img" src="https://s2.loli.net/2021/12/14/TzXam3AwL4WUyq5.png"></image>
+        <view class="model_text">联系客服</view>
+    </navigator>
+    <navigator class="model">
+        <image class="model_img" src="https://s2.loli.net/2021/12/14/xJoTVcqAi4eLHU7.png"></image>
+        <view class="model_text">意见反馈</view>
+    </navigator>
+    <navigator class="model">
+        <image class="model_img" src="https://s2.loli.net/2021/12/14/acP7BHhGsVCngqZ.png"></image>
+        <view class="model_text">关于平台</view>
+    </navigator>
+</view>

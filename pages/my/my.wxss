@@ -1,1 +1,200 @@
-/* pages/my/my.wxss */
+page {
+  background-color: #e9e9e9;
+}
+page .user_info_wrap .user_img_wrap .user_head_contain {
+  margin-top: 20rpx;
+  margin-left: 3%;
+  margin-right: 3%;
+  height: 300rpx;
+  background-color: #afd9dd94;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+}
+page .user_info_wrap .user_img_wrap .user_head_contain .user_img {
+  margin-left: 20rpx;
+  flex: 1;
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+  border: 2rpx solid white;
+}
+page .user_info_wrap .user_img_wrap .user_head_contain .user_info {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  margin-left: 40rpx;
+}
+page .user_info_wrap .user_img_wrap .user_head_contain .user_info .user_nickname {
+  flex: 1;
+  font-weight: 600;
+  font-size: 40rpx;
+  color: #33ccb3;
+}
+page .user_info_wrap .user_img_wrap .user_head_contain .user_info .enterprise {
+  padding-top: 10rpx;
+}
+page .user_info_wrap .user_img_wrap .user_head_contain .user_info .enterprise .enterprise_text {
+  font-size: 26rpx;
+  color: #585f5e;
+}
+page .user_info_wrap .user_img_wrap .user_head_contain .user_info .enterprise .enterprise_img {
+  height: 28rpx;
+  width: 28rpx;
+}
+page .user_info_wrap .user_img_wrap .user_head_contain .user_info .department .department_text {
+  padding-top: 6rpx;
+  font-size: 28rpx;
+  color: #585f5e;
+}
+page .user_info_wrap .user_img_wrap .user_head_contain .button_get {
+  flex: 2;
+}
+page .user_info_wrap .user_img_wrap .user_head_contain .button_get .get {
+  width: 68%;
+  font-size: 36rpx;
+  font-weight: 600;
+  border-radius: 20rpx;
+  color: white;
+  background-color: #33ccb3;
+}
+page .order_info_wrap {
+  margin-top: 20rpx;
+  margin-left: 3%;
+  margin-right: 3%;
+  height: 200rpx;
+  background-color: #afd9dd94;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+page .order_info_wrap .order_header {
+  flex: 1;
+  width: 680rpx;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #585f5e;
+  border-bottom: #6ea59d solid 2rpx;
+  text-align: left;
+}
+page .order_info_wrap .order_info {
+  flex: 4;
+  width: 680rpx;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+page .order_info_wrap .order_info image {
+  height: 64rpx;
+  width: 64rpx;
+}
+page .order_info_wrap .order_info .all_order {
+  flex: 1;
+}
+page .order_info_wrap .order_info .waitpay_order {
+  flex: 1;
+}
+page .order_info_wrap .order_info .waitreceive_order {
+  flex: 1;
+}
+page .order_info_wrap .order_info .exchanged_order {
+  flex: 1;
+}
+page .address_wrap {
+  margin-top: 20rpx;
+  margin-left: 3%;
+  margin-right: 3%;
+  height: 100rpx;
+  background-color: #afd9dd94;
+  border-radius: 16rpx;
+}
+page .address_wrap .address {
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+}
+page .address_wrap .address .address_img {
+  display: flex;
+  flex: 1;
+  padding-left: 20rpx;
+  height: 60rpx;
+  width: 60rpx;
+}
+page .address_wrap .address .address_text {
+  flex: 10;
+  padding-left: 20rpx;
+  display: flex;
+  font-size: 34rpx;
+}
+page .certification_wrap {
+  margin-top: 20rpx;
+  margin-left: 3%;
+  margin-right: 3%;
+  height: 100rpx;
+  background-color: #afd9dd94;
+  border-radius: 16rpx;
+}
+page .certification_wrap .certification {
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+}
+page .certification_wrap .certification .certification_img {
+  display: flex;
+  flex: 1;
+  padding-left: 20rpx;
+  height: 60rpx;
+  width: 60rpx;
+}
+page .certification_wrap .certification .certification_text {
+  flex: 10;
+  padding-left: 20rpx;
+  display: flex;
+  font-size: 34rpx;
+}
+page .other_wrap {
+  margin-top: 20rpx;
+  margin-left: 3%;
+  margin-right: 3%;
+  background-color: #afd9dd94;
+  border-radius: 16rpx;
+  margin-bottom: 30rpx;
+}
+page .other_wrap .model {
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  border-top: 2rpx solid #6ea59d;
+}
+page .other_wrap .model .model_img {
+  display: flex;
+  flex: 1;
+  padding-left: 20rpx;
+  height: 60rpx;
+  width: 60rpx;
+}
+page .other_wrap .model .model_text {
+  flex: 10;
+  padding-left: 20rpx;
+  display: flex;
+  font-size: 34rpx;
+}
+page .other_wrap .model0 {
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+}
+page .other_wrap .model0 .model_img {
+  display: flex;
+  flex: 1;
+  padding-left: 20rpx;
+  height: 60rpx;
+  width: 60rpx;
+}
+page .other_wrap .model0 .model_text {
+  flex: 10;
+  padding-left: 20rpx;
+  display: flex;
+  font-size: 34rpx;
+}
