@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-03 20:09:26
- * @LastEditTime: 2021-12-03 21:02:23
+ * @LastEditTime: 2021-12-16 00:18:10
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\detail\detail.js
@@ -20,10 +20,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //获取goodsID;
-    const {goodsId}=options;
-    console.log("goodsID:" + goodsId);
-    this.getGoodsDetail(goodsId);
+      //获取goodsID;
+      const {goodsId}=options;
+      console.log("goodsID:" + goodsId);
+      this.getGoodsDetail(goodsId);
   },
 
   getGoodsDetail(goodsId){
@@ -53,7 +53,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
@@ -89,5 +89,39 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  addCart(){
+    var app = getApp();
+    var goods = this.data.goodobject;
+    var user = wx.getStorageSync('user');
+    var consumerId = user.consumer.consumerId;
+    wx.request({
+      url: app.globalData.host + 'addCart',
+      data:{
+        consumerId : consumerId,
+        goodsId: goods.goodsId
+      },
+      success: (res)=>{
+        console.log("返回结果：", res);
+        var data = res.data;
+        if(data == '加入购物车异常'){
+          //库存不足
+          wx.showToast({
+            title: "库存不足", // 提示的内容
+            icon: "error", 
+            duration: 2000
+        })
+        }
+        else{
+          //更新后的数据写入缓存
+          wx.showToast({
+            title: "已经加入购物车",
+            icon: "success",
+            duration: 2000
+          });
+          wx.setStorageSync('cartInfo', data);
+        }
+      }
+    })
   }
 })

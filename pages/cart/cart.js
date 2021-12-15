@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-11-30 16:34:19
- * @LastEditTime: 2021-12-13 00:11:35
+ * @LastEditTime: 2021-12-16 00:19:17
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\cart\cart.js
@@ -32,8 +32,13 @@ Page({
   onLoad: function (options) {
     //获取购物车数据
     var app = getApp();
+    var user = wx.getStorageSync('user');
+    console.log(user);
     wx.request({
       url: app.globalData.host + 'getCart',
+      data:{
+        consumerId: user.consumer.consumerId
+      },
       success:(result)=>{
         console.log(result);
         this.setData({
@@ -78,6 +83,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var user = wx.getStorageSync('user');
+    console.log(user);
   },
 
   /**
@@ -245,7 +252,7 @@ Page({
               }
             })
           }
-          else if(op===1 && shops[i].goodslist[j].goodsnum >= shops[i].goodslist[j].goods.goodsStock - 1){
+          else if(op === 1 && shops[i].goodslist[j].goodsnum >= shops[i].goodslist[j].goods.goodsStock){
             wx.showToast({
               title: '商品库存不足',
               icon: 'error',
