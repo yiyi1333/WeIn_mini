@@ -62,7 +62,7 @@
 <!-- 地址管理入口 -->
 
 <view class="address_wrap">
-    <navigator class="address">
+    <navigator class="address" bindtap="getAddress">
         <image class="address_img" src="https://s2.loli.net/2021/12/14/NbdhH7U6MXRcn5f.png"></image>
         <view class="address_text">收货地址管理</view>
     </navigator>

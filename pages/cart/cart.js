@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-11-30 16:34:19
- * @LastEditTime: 2021-12-16 00:19:17
+ * @LastEditTime: 2021-12-16 14:50:07
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\cart\cart.js
@@ -20,8 +20,6 @@ Page({
   CalculateTotalPrice: function(){
     var totalPrice=0;
     var shops = this.data.shops;
-    console.log("shops:1111");
-    console.log(shops);
     this.setData({
       totalPrice:totalPrice
     })
@@ -33,7 +31,6 @@ Page({
     //获取购物车数据
     var app = getApp();
     var user = wx.getStorageSync('user');
-    console.log(user);
     wx.request({
       url: app.globalData.host + 'getCart',
       data:{
@@ -44,6 +41,7 @@ Page({
         this.setData({
           cart:result.data
         })
+        wx.setStorageSync('cartInfo', result.data);
         //将复选框状态初始化为未选中
         var cart = result.data;
         var shops=[];
@@ -83,8 +81,30 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var user = wx.getStorageSync('user');
-    console.log(user);
+    var cart = wx.getStorageSync('cartInfo');
+    var shops = [];
+    for(var i = 0; i < cart.length; i++){
+      var shop = {
+        shop: cart[i].shop,
+        goodslist:[],
+        checked:false
+      };
+      var glist = cart[i].goodsList;
+      for(var j = 0; j < glist.length; j++){
+        var goods={
+          goods:glist[j].goods,
+          goodsnum:glist[j].goodsNum,
+          checked:false
+        };
+        shop.goodslist.push(goods);
+      }
+      shops.push(shop);
+    }
+    this.setData({
+      shops:shops
+    })
+    this.updateAllcheck();
+    this.calculatePrice();
   },
 
   /**
@@ -226,6 +246,7 @@ Page({
   ItemNumEdit(e){
     const op = e.currentTarget.dataset.op;
     const id = e.currentTarget.dataset.id;
+    var cartInfo = wx.getStorageSync('cartInfo');
     var shops = this.data.shops;
     var flag = false;
     for(var i = 0;i < shops.length; i++){
@@ -239,9 +260,11 @@ Page({
                 if (res.confirm) {
                   if(shops[i].goodslist.length === 1){
                     shops.splice(i, 1);
+                    cartInfo.splice(i, 1);
                   }
                   else{
                     shops[i].goodslist.splice(j, 1);
+                    cartInfo[i].goodsList.splice(j, 1);
                   }
                   this.setData({
                     shops:shops
@@ -261,6 +284,7 @@ Page({
           }
           else{
             shops[i].goodslist[j].goodsnum += op;
+            cartInfo[i].goodsList[j].goodsNum += op;
           }
           flag=true;
           break;
@@ -271,6 +295,8 @@ Page({
     this.setData({
       shops:shops
     })
+    wx.setStorageSync('cartInfo', cartInfo);
+
     //重新计算价格
     this.calculatePrice();
   },

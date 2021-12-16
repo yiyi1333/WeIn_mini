@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-11-30 16:34:19
- * @LastEditTime: 2021-12-15 00:31:04
+ * @LastEditTime: 2021-12-16 14:17:39
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\my\my.js
@@ -105,6 +105,22 @@ Page({
             avatarUrl: u.consumer.avatarUrl
           }
         })
+      }
+    })
+  },
+
+  // 地址管理
+  getAddress(){
+    wx.chooseAddress({
+      success (res) {
+        console.log(res.userName)
+        console.log(res.postalCode)
+        console.log(res.provinceName)
+        console.log(res.cityName)
+        console.log(res.countyName)
+        console.log(res.detailInfo)
+        console.log(res.nationalCode)
+        console.log(res.telNumber)
       }
     })
   }
