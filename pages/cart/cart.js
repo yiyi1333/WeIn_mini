@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-11-30 16:34:19
- * @LastEditTime: 2021-12-16 14:50:07
+ * @LastEditTime: 2021-12-17 23:43:03
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\cart\cart.js
@@ -65,6 +65,7 @@ Page({
         this.setData({
           shops:shops
         })
+        wx.setStorageSync('shops', shop);
         this.calculatePrice();
       }
     })
@@ -81,25 +82,26 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var cart = wx.getStorageSync('cartInfo');
-    var shops = [];
-    for(var i = 0; i < cart.length; i++){
-      var shop = {
-        shop: cart[i].shop,
-        goodslist:[],
-        checked:false
-      };
-      var glist = cart[i].goodsList;
-      for(var j = 0; j < glist.length; j++){
-        var goods={
-          goods:glist[j].goods,
-          goodsnum:glist[j].goodsNum,
-          checked:false
-        };
-        shop.goodslist.push(goods);
-      }
-      shops.push(shop);
-    }
+    // var cart = wx.getStorageSync('cartInfo');
+    // var shops = [];
+    // for(var i = 0; i < cart.length; i++){
+    //   var shop = {
+    //     shop: cart[i].shop,
+    //     goodslist:[],
+    //     checked:false
+    //   };
+    //   var glist = cart[i].goodsList;
+    //   for(var j = 0; j < glist.length; j++){
+    //     var goods={
+    //       goods:glist[j].goods,
+    //       goodsnum:glist[j].goodsNum,
+    //       checked:false
+    //     };
+    //     shop.goodslist.push(goods);
+    //   }
+    //   shops.push(shop);
+    // }
+    var shops = wx.getStorageSync('shops');
     this.setData({
       shops:shops
     })
@@ -300,8 +302,9 @@ Page({
     //重新计算价格
     this.calculatePrice();
   },
-  async pay(){
+  pay(){
     //验证是否选择了商品
+    var app =  getApp();
     var shops = this.data.shops;
     var checknum = 0;
     for(var i = 0; i < shops.length; i++){
@@ -319,8 +322,70 @@ Page({
       })
     }
     else{
+      var checkedshops = [];
+      var temp = shops;
+      for(var i = 0; i < shops.length; i++){
+        if(shops[i].checked){
+          checkedshops.push({
+            shop: shops[i].shop,
+            goodslist: shops[i].goodslist
+          });
+          temp.splice(i, 1);
+          i--;
+          continue;
+        }
+        var check = {
+          shop: shops[i].shop,
+          goodslist: []
+        };
+        for(var j = 0; j < shops[i].goodslist.length; j++){
+          if(shops[i].goodslist[j].checked){
+            check.goodslist.push(shops[i].goodslist[j]);
+            temp[i].goodslist.splice(j, 1);
+            j--;
+          }
+        }
+        if(check.goodslist.length > 0){
+          checkedshops.push(check);
+        }
+      }
+      console.log(checkedshops);
+      wx.setStorageSync('checkedgoods', checkedshops);
+      wx.setStorageSync('tempcart', temp);
+      //生成订单
+      //1. 提取出商品id和商品数量
+      //2. 从shops中移出该商品 
+
+      // var goodslist = [];
+      // for(var i = 0; i < shops.length; i++){
+      //   for(var j = 0; j < shops[i].goodslist.length; j++){
+      //     if(shops[i].goodslist[j].checked){
+      //       goodslist.push({
+      //         goodsId: shops[i].goodslist[j].goods.goodsId,
+      //         goodsNum: shops[i].goodslist[j].goodsnum
+      //       });
+      //       shops[i].goodslist.splice(j, 1);
+      //       j--;
+      //     }
+      //   }
+      //   if(shops[i].checked){
+      //     shops.splice(i, 1);
+      //     i--;
+      //   }
+      // }
+      // var user = wx.getStorageSync('user');
+      // wx.request({
+      //   url: app.globalData.host + "createOrder",
+      //   data:{
+      //     goodsList: JSON.stringify(goodslist),
+      //     consumerId: user.consumer.consumerId
+      //   },
+      //   success(res){
+      //     console.log(res);
+      //   }
+      // })
       wx.navigateTo({
-        url: '/pages/payment/payment',
+        url: '/pages/createorder/createorder'
       });
     }
   }

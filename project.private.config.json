@@ -14,7 +14,7 @@
       "list": [
         {
           "name": "pages/cart/cart",
-          "pathName": "pages/cart/cart",
+          "pathName": "pages/createorder/createorder",
           "query": "",
           "scene": null
         }

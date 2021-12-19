@@ -8,7 +8,8 @@
     "pages/search/search",
     "pages/detail/detail",
     "pages/payment/payment",
-    "pages/address/address"
+    "pages/address/address",
+    "pages/createorder/createorder"
   ],
   "window":{
     "backgroundTextStyle":"dark",
