@@ -1,0 +1,48 @@
+<view class="cart_content">
+    <view class="cart_main">
+        <block wx:if="{{order.length!=0}}">
+            <view class="shop_wrap" wx:for="{{order}}" wx:key="{{orderId}}">
+                <view class="shop">
+                    <view class="shop_name">
+                        <navigator>
+                            <view class="shopname">
+                                {{item.shop.shopName}}
+                            </view>
+                        </navigator>
+                    </view>
+                </view>
+                <view class="cart_item" wx:for="{{item.goodsList}}" wx:key="{{goods.goodsId}}" wx:for-item="j">
+
+                    <!-- 商品图片 -->
+                    <navigator class="cart_imt_wrap" url="../../pages/detail/detail?goodsId={{j.goods.goodsId}}">
+                        <image mode="widthFix" src="{{j.goods.goodsImage}}"></image>
+                    </navigator>
+                    <!-- 商品信息 -->
+                    <view class="cart_info_wrap">
+                        <view class="goods_name">{{j.goods.goodsName}}</view>
+                        <view class="goods_price_wrap">
+                            <view class="goods_price">￥{{j.goods.goodsPrice}}</view>
+                            <view class="cart_bum_tool">
+                                <view class="goods_num">×{{j.goodsNum}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="order_Info">
+                    <view class="order_id_info">
+                        <view class="order_id">
+                            <text>订单号:</text>
+                            <text class="orderid">{{item.orderId}}</text>
+                        </view>
+                    </view>
+                    <view class="order_total_price">
+                        <view class="original_price"><text>原价: </text><text class="num">{{item.goodTotalPrices}}</text>
+                        </view>
+                        <view class="real_price"><text>实付: </text><text class="num">{{item.actuaLAmountPaid}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>

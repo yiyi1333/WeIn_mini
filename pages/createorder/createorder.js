@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-17 16:39:44
- * @LastEditTime: 2021-12-17 23:45:05
+ * @LastEditTime: 2021-12-22 19:54:48
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\createorder\createorder.js
@@ -26,8 +26,8 @@ Page({
     var goods = wx.getStorageSync('checkedgoods');
     console.log(goods);
     var sum = 0;
-    for(var i = 0; i < goods.length; i++){
-      for(var j = 0; j < goods[i].goodslist.length; j++){
+    for (var i = 0; i < goods.length; i++) {
+      for (var j = 0; j < goods[i].goodslist.length; j++) {
         sum += goods[i].goodslist[j].goods.goodsPrice * goods[i].goodslist[j].goodsnum;
       }
     }
@@ -35,8 +35,6 @@ Page({
       shops: goods,
       totalPrice: sum
     });
-    var temp = wx.getStorageSync('tempcart');
-    wx.setStorageSync('shops', temp);
   },
 
   /**
@@ -45,22 +43,76 @@ Page({
   onShow: function () {
 
   },
-    // 地址管理
-  getAddress(){
+  // 地址管理
+  getAddress() {
     var that = this;
     wx.chooseAddress({
-      success (res) {
-        console.log(res.userName)
-        console.log(res.postalCode)
-        console.log(res.provinceName)
-        console.log(res.cityName)
-        console.log(res.countyName)
-        console.log(res.detailInfo)
-        console.log(res.nationalCode)
-        console.log(res.telNumber)
+      success(res) {
         that.setData({
           address: res
         })
+      }
+    })
+  },
+  //提交订单
+  submitorder() {
+    var that = this;
+    const app = getApp();
+    var temp = wx.getStorageSync('tempcart');
+    var consumerId = wx.getStorageSync('user').consumer.consumerId;
+    wx.request({
+      url: app.globalData.host + 'createOrder',
+      data: {
+        shops: this.data.shops,
+        address: this.data.address,
+        consumerId: consumerId
+      },
+      success(res) {
+        console.log(res);
+        if (res.data == "createOrderSuccess") {
+          //成功生成订单
+          wx.showToast({
+            title: '下单成功',
+            icon: 'success',
+            duration: 2000
+          })
+          setTimeout(function () {
+            wx.switchTab({
+              url: '/pages/cart/cart'
+            });
+          }, 2000)
+        }
+        else {
+          //生成订单失败
+          wx.showModal({
+            title: '订单生成失败',
+            content: '手慢了! 库存余量不足',
+            showCancel: true,
+            cancelText: '取消订单',
+            confirmText: '继续下单',
+            success: function (choose) {
+              console.log(choose);
+              if (choose.confirm) {
+                //继续下单
+                that.submitorder();
+              }
+              else {
+                console.log("取消订单回滚");
+                wx.setStorageSync('shops', temp);
+                wx.switchTab({
+                  url: '/pages/cart/cart'
+                });
+              }
+            },
+            fail: function () {
+              wx.showToast({
+                title: '发生了未知错误，请联系客服',
+                icon: 'fail',
+                duration: 2000
+              })
+            }
+          })
+        }
       }
     })
   }

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-11-30 16:34:19
- * @LastEditTime: 2021-12-16 14:17:39
+ * @LastEditTime: 2021-12-22 22:00:41
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\my\my.js
@@ -13,8 +13,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    user:null,
-    userInfo:null
+    user: null,
+    userInfo: null
   },
 
   /**
@@ -38,9 +38,9 @@ Page({
     //从缓存中读取数据
     var u = wx.getStorageSync('user');
     this.setData({
-      user:u
+      user: u
     });
-    
+
   },
 
   /**
@@ -78,7 +78,7 @@ Page({
 
   },
 
-  getUserProfile(e){
+  getUserProfile(e) {
     var app = getApp();
     wx.getUserProfile({
       desc: '用户获取微信头像和昵称',
@@ -93,7 +93,7 @@ Page({
         u.consumer.avatarUrl = res.userInfo.avatarUrl;
         u.consumer.nickName = res.userInfo.nickName;
         this.setData({
-          user:u
+          user: u
         })
         wx.setStorageSync('user', u);
         //给后台发送数据
@@ -110,9 +110,9 @@ Page({
   },
 
   // 地址管理
-  getAddress(){
+  getAddress() {
     wx.chooseAddress({
-      success (res) {
+      success(res) {
         console.log(res.userName)
         console.log(res.postalCode)
         console.log(res.provinceName)
@@ -123,5 +123,6 @@ Page({
         console.log(res.telNumber)
       }
     })
-  }
+  },
+
 })

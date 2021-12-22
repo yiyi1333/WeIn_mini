@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-11-30 15:56:11
- * @LastEditTime: 2021-12-15 22:21:16
- * @LastEditors: your name
+ * @LastEditTime: 2021-12-22 23:22:15
+ * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\app.js
  */
@@ -20,9 +20,13 @@ App({
   },
   globalData: {
     userInfo: null,
-    host: 'https://789c-115-200-49-21.ngrok.io/spring_prj1_Web_exploded/',
+    host: 'https://ce1d-115-200-7-23.ngrok.io/spring_prj1_Web_exploded/',
     code: null,
     appid: "wxc1b5e6fadc4b321a",
+    // wxc8244d5df4e7c7c9
+    // wx6885acbedba59c14
     appsecret: "a70d46afc23855a88469e5edbb80a6cd",
+    // e2cac406ddf204fdb692039af82a4be0
+    // a70d46afc23855a88469e5edbb80a6cd
   }
 })

@@ -20,7 +20,7 @@
             </checkbox-group>
           </view>
           <!-- 商品图片 -->
-          <navigator class="cart_imt_wrap">
+          <navigator class="cart_imt_wrap" url="../../pages/detail/detail?goodsId={{j.goods.goodsId}}">
             <image mode="widthFix" src="{{j.goods.goodsImage}}"></image>
           </navigator>
           <!-- 商品信息 -->

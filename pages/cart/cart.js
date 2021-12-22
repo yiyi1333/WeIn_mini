@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-11-30 16:34:19
- * @LastEditTime: 2021-12-17 23:43:03
+ * @LastEditTime: 2021-12-22 20:00:02
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\cart\cart.js
@@ -12,16 +12,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    cart:[],
-    allChecked:false,
-    shops:[],
-    totalPrice:0
+    cart: [],
+    allChecked: false,
+    shops: [],
+    totalPrice: 0
   },
-  CalculateTotalPrice: function(){
-    var totalPrice=0;
+  CalculateTotalPrice: function () {
+    var totalPrice = 0;
     var shops = this.data.shops;
     this.setData({
-      totalPrice:totalPrice
+      totalPrice: totalPrice
     })
   },
   /**
@@ -30,43 +30,55 @@ Page({
   onLoad: function (options) {
     //获取购物车数据
     var app = getApp();
+    var that = this;
     var user = wx.getStorageSync('user');
+    wx.showLoading({
+      title: 'Loading...'
+    })
     wx.request({
       url: app.globalData.host + 'getCart',
-      data:{
+      data: {
         consumerId: user.consumer.consumerId
       },
-      success:(result)=>{
+      success: (result) => {
         console.log(result);
         this.setData({
-          cart:result.data
+          cart: result.data
         })
         wx.setStorageSync('cartInfo', result.data);
         //将复选框状态初始化为未选中
         var cart = result.data;
-        var shops=[];
-        for(var i = 0; i < cart.length; i++){
+        var shops = [];
+        for (var i = 0; i < cart.length; i++) {
           var shop = {
             shop: cart[i].shop,
-            goodslist:[],
-            checked:false
+            goodslist: [],
+            checked: false
           };
           var glist = cart[i].goodsList;
-          for(var j = 0; j < glist.length; j++){
-            var goods={
-              goods:glist[j].goods,
-              goodsnum:glist[j].goodsNum,
-              checked:false
+          for (var j = 0; j < glist.length; j++) {
+            var goods = {
+              goods: glist[j].goods,
+              goodsnum: glist[j].goodsNum,
+              checked: false
             };
             shop.goodslist.push(goods);
           }
           shops.push(shop);
         }
+        wx.hideLoading();
         this.setData({
-          shops:shops
+          shops: shops
         })
-        wx.setStorageSync('shops', shop);
+        wx.setStorageSync('shops', shops);
         this.calculatePrice();
+      },
+      fail: function () {
+        wx.showToast({
+          title: '发生了未知错误',
+          icon: 'fail',
+          duration: 2000
+        })
       }
     })
   },
@@ -82,28 +94,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // var cart = wx.getStorageSync('cartInfo');
-    // var shops = [];
-    // for(var i = 0; i < cart.length; i++){
-    //   var shop = {
-    //     shop: cart[i].shop,
-    //     goodslist:[],
-    //     checked:false
-    //   };
-    //   var glist = cart[i].goodsList;
-    //   for(var j = 0; j < glist.length; j++){
-    //     var goods={
-    //       goods:glist[j].goods,
-    //       goodsnum:glist[j].goodsNum,
-    //       checked:false
-    //     };
-    //     shop.goodslist.push(goods);
-    //   }
-    //   shops.push(shop);
-    // }
     var shops = wx.getStorageSync('shops');
     this.setData({
-      shops:shops
+      shops: shops
     })
     this.updateAllcheck();
     this.calculatePrice();
@@ -113,14 +106,15 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    var shops = this.data.shops;
+    wx.setStorageSync('shops', shops);
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    //更新后台数据
   },
 
   /**
@@ -144,80 +138,80 @@ Page({
 
   },
   // 商品复选框
-  handeItemChange(e){
+  handeItemChange(e) {
     //获取id
     const goods_id = e.currentTarget.dataset.id;
     console.log(goods_id);
     var shops = this.data.shops;
-    var flag=false;
-    for(var i = 0; i < shops.length; i++){
+    var flag = false;
+    for (var i = 0; i < shops.length; i++) {
       var gl = shops[i].goodslist;
-      for(var j = 0; j < gl.length; j++){
-        if(gl[j].goods.goodsId===goods_id){
-          gl[j].checked=!gl[j].checked;
-          flag=true;
+      for (var j = 0; j < gl.length; j++) {
+        if (gl[j].goods.goodsId === goods_id) {
+          gl[j].checked = !gl[j].checked;
+          flag = true;
           break;
         }
       }
-      if(flag) break;
+      if (flag) break;
     }
     this.setData({
-      shops:shops
+      shops: shops
     })
     //更新全选按钮
     this.updateAllcheck();
     //重新计算价格
     this.calculatePrice();
   },
-  calculatePrice(){
+  calculatePrice() {
     //计算价格
-    var totalPrice=0;
+    var totalPrice = 0;
     var shops = this.data.shops;
     console.log(shops);
-    for(var i = 0; i < shops.length; i++){
+    for (var i = 0; i < shops.length; i++) {
       var gl = shops[i].goodslist;
-      for(var j = 0; j < gl.length; j++){
+      for (var j = 0; j < gl.length; j++) {
         //计算总价
-        if(gl[j].checked){
-          totalPrice+=gl[j].goods.goodsPrice*gl[j].goodsnum;
+        if (gl[j].checked) {
+          totalPrice += gl[j].goods.goodsPrice * gl[j].goodsnum;
         }
       }
     }
     this.setData({
-      totalPrice:totalPrice
+      totalPrice: totalPrice
     })
   },
   //全选框更新
-  updateAllcheck(){
+  updateAllcheck() {
     var shops = this.data.shops;
-    var flag=true;
-    for(var i = 0; i < shops.length; i++){
+    var flag = true;
+    for (var i = 0; i < shops.length; i++) {
       var gl = shops[i].goodslist;
       var f = true;
-      for(var j = 0; j < gl.length; j++){
-        if(!gl[j].checked){
+      for (var j = 0; j < gl.length; j++) {
+        if (!gl[j].checked) {
           //有一个没有选中
-          f=false;
-          flag=false;
+          f = false;
+          flag = false;
           break;
         }
       }
-      shops[i].checked=f;
+      shops[i].checked = f;
     }
     this.setData({
-      allChecked:flag,
-      shops:shops
+      allChecked: flag,
+      shops: shops
     })
   },
   //点击店铺全选
-  shopallcheck(e){
+  shopallcheck(e) {
     const shop_id = e.currentTarget.dataset.id;
     var shops = this.data.shops;
-    for(var i = 0; i < shops.length; i++){
-      if(shops[i].shop.shopId===shop_id){
-        shops[i].checked=!shops[i].checked;
-        for(var j = 0; j < shops[i].goodslist.length; j++){
-          shops[i].goodslist[j].checked=shops[i].checked;
+    for (var i = 0; i < shops.length; i++) {
+      if (shops[i].shop.shopId === shop_id) {
+        shops[i].checked = !shops[i].checked;
+        for (var j = 0; j < shops[i].goodslist.length; j++) {
+          shops[i].goodslist[j].checked = shops[i].checked;
         }
         break;
       }
@@ -228,48 +222,48 @@ Page({
     this.calculatePrice();
   },
   //点击全选按钮
-  checkall(){
+  checkall() {
     var allchecked = this.data.allChecked;
-    allchecked=!allchecked;
+    allchecked = !allchecked;
     var shops = this.data.shops;
-    for(var i = 0;i < shops.length; i++){
-      shops[i].checked=allchecked;
-      for(var j = 0; j < shops[i].goodslist.length; j++){
-        shops[i].goodslist[j].checked=allchecked;
+    for (var i = 0; i < shops.length; i++) {
+      shops[i].checked = allchecked;
+      for (var j = 0; j < shops[i].goodslist.length; j++) {
+        shops[i].goodslist[j].checked = allchecked;
       }
     }
     this.setData({
-      allChecked:allchecked,
-      shops:shops
+      allChecked: allchecked,
+      shops: shops
     });
     this.calculatePrice();
   },
   //编辑商品数量
-  ItemNumEdit(e){
+  ItemNumEdit(e) {
     const op = e.currentTarget.dataset.op;
     const id = e.currentTarget.dataset.id;
     var cartInfo = wx.getStorageSync('cartInfo');
     var shops = this.data.shops;
     var flag = false;
-    for(var i = 0;i < shops.length; i++){
-      for(var j = 0; j < shops[i].goodslist.length; j++){
-        if(id===shops[i].goodslist[j].goods.goodsId){
-          if(shops[i].goodslist[j].goodsnum + op === 0){
+    for (var i = 0; i < shops.length; i++) {
+      for (var j = 0; j < shops[i].goodslist.length; j++) {
+        if (id === shops[i].goodslist[j].goods.goodsId) {
+          if (shops[i].goodslist[j].goodsnum + op === 0) {
             wx.showModal({
               title: '提示',
               content: '确认要删除该商品吗?',
-              success :(res)=> {
+              success: (res) => {
                 if (res.confirm) {
-                  if(shops[i].goodslist.length === 1){
+                  if (shops[i].goodslist.length === 1) {
                     shops.splice(i, 1);
                     cartInfo.splice(i, 1);
                   }
-                  else{
+                  else {
                     shops[i].goodslist.splice(j, 1);
                     cartInfo[i].goodsList.splice(j, 1);
                   }
                   this.setData({
-                    shops:shops
+                    shops: shops
                   })
                 } else if (res.cancel) {
                   console.log('取消')
@@ -277,43 +271,42 @@ Page({
               }
             })
           }
-          else if(op === 1 && shops[i].goodslist[j].goodsnum >= shops[i].goodslist[j].goods.goodsStock){
+          else if (op === 1 && shops[i].goodslist[j].goodsnum >= shops[i].goodslist[j].goods.goodsStock) {
             wx.showToast({
               title: '商品库存不足',
               icon: 'error',
               duration: 2000
             })
           }
-          else{
+          else {
             shops[i].goodslist[j].goodsnum += op;
             cartInfo[i].goodsList[j].goodsNum += op;
           }
-          flag=true;
+          flag = true;
           break;
         }
       }
-      if(flag) break;
+      if (flag) break;
     }
     this.setData({
-      shops:shops
+      shops: shops
     })
     wx.setStorageSync('cartInfo', cartInfo);
-
     //重新计算价格
     this.calculatePrice();
   },
-  pay(){
+  pay() {
     //验证是否选择了商品
-    var app =  getApp();
+    var app = getApp();
     var shops = this.data.shops;
     var checknum = 0;
-    for(var i = 0; i < shops.length; i++){
-      for(var j = 0; j < shops[i].goodslist.length; j++){
-        if(shops[i].goodslist[j].checked)
+    for (var i = 0; i < shops.length; i++) {
+      for (var j = 0; j < shops[i].goodslist.length; j++) {
+        if (shops[i].goodslist[j].checked)
           checknum++;
       }
     }
-    if(checknum === 0){
+    if (checknum === 0) {
       //未选择商品
       wx.showToast({
         title: '未选择商品',
@@ -321,11 +314,12 @@ Page({
         duration: 2000
       })
     }
-    else{
+    else {
       var checkedshops = [];
       var temp = shops;
-      for(var i = 0; i < shops.length; i++){
-        if(shops[i].checked){
+      wx.setStorageSync('tempcart', temp);
+      for (var i = 0; i < shops.length; i++) {
+        if (shops[i].checked) {
           checkedshops.push({
             shop: shops[i].shop,
             goodslist: shops[i].goodslist
@@ -338,52 +332,18 @@ Page({
           shop: shops[i].shop,
           goodslist: []
         };
-        for(var j = 0; j < shops[i].goodslist.length; j++){
-          if(shops[i].goodslist[j].checked){
+        for (var j = 0; j < shops[i].goodslist.length; j++) {
+          if (shops[i].goodslist[j].checked) {
             check.goodslist.push(shops[i].goodslist[j]);
             temp[i].goodslist.splice(j, 1);
             j--;
           }
         }
-        if(check.goodslist.length > 0){
+        if (check.goodslist.length > 0) {
           checkedshops.push(check);
         }
       }
-      console.log(checkedshops);
       wx.setStorageSync('checkedgoods', checkedshops);
-      wx.setStorageSync('tempcart', temp);
-      //生成订单
-      //1. 提取出商品id和商品数量
-      //2. 从shops中移出该商品 
-
-      // var goodslist = [];
-      // for(var i = 0; i < shops.length; i++){
-      //   for(var j = 0; j < shops[i].goodslist.length; j++){
-      //     if(shops[i].goodslist[j].checked){
-      //       goodslist.push({
-      //         goodsId: shops[i].goodslist[j].goods.goodsId,
-      //         goodsNum: shops[i].goodslist[j].goodsnum
-      //       });
-      //       shops[i].goodslist.splice(j, 1);
-      //       j--;
-      //     }
-      //   }
-      //   if(shops[i].checked){
-      //     shops.splice(i, 1);
-      //     i--;
-      //   }
-      // }
-      // var user = wx.getStorageSync('user');
-      // wx.request({
-      //   url: app.globalData.host + "createOrder",
-      //   data:{
-      //     goodsList: JSON.stringify(goodslist),
-      //     consumerId: user.consumer.consumerId
-      //   },
-      //   success(res){
-      //     console.log(res);
-      //   }
-      // })
       wx.navigateTo({
         url: '/pages/createorder/createorder'
       });

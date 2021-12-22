@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/home/home",
     "pages/my/my",
@@ -9,40 +9,51 @@
     "pages/detail/detail",
     "pages/payment/payment",
     "pages/address/address",
-    "pages/createorder/createorder"
+    "pages/createorder/createorder",
+    "pages/allorder/allorder"
   ],
-  "window":{
-    "backgroundTextStyle":"dark",
+  "window": {
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#12a8a9",
     "navigationBarTitleText": "WeIn内购平台",
-    "navigationBarTextStyle":"white",
-    "enablePullDownRefresh":true
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/home/home",
-      "iconPath": "icon/index.png",
-      "selectedIconPath": "icon/select_index.png",
-      "text": "首页"
-    },{
-      "pagePath": "pages/classify/classify",
-      "iconPath": "icon/classify.png",
-      "selectedIconPath": "icon/select_classify.png",
-      "text": "分类"
-    },{
-      "pagePath": "pages/cart/cart",
-      "iconPath": "icon/cart.png",
-      "selectedIconPath": "icon/select_cart.png",
-      "text": "购物车"
-    },{
-      "pagePath": "pages/my/my",
-      "iconPath": "icon/my.png",
-      "selectedIconPath": "icon/select_my.png",
-      "text": "我的"
-    }
-  ]
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "icon/index.png",
+        "selectedIconPath": "icon/select_index.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/classify/classify",
+        "iconPath": "icon/classify.png",
+        "selectedIconPath": "icon/select_classify.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "iconPath": "icon/cart.png",
+        "selectedIconPath": "icon/select_cart.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "icon/my.png",
+        "selectedIconPath": "icon/select_my.png",
+        "text": "我的"
+      }
+    ]
   },
-  "debug": true
+  "debug": true,
+  "plugins": {
+    "kdPlugin": {
+      "version": "1.1.2",
+      "provider": "wx6885acbedba59c14"
+    }
+  }
 }

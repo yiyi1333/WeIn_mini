@@ -57,7 +57,7 @@
     <view>包含运费</view>
   </view>
   <!-- 结算 -->
-  <view class="order_pay_wrap" bindtap="pay">
+  <view class="order_pay_wrap" bindtap="submitorder">
     提交订单
   </view>
 </view>

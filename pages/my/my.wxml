@@ -5,12 +5,15 @@
             <view class="user_info">
                 <text class="user_nickname">{{user.consumer.nickName}}</text>
                 <view class="enterprise">
-                    <text wx:if="{{user.consumer.enterpriseDepartmentNumber != null}}" class="enterprise_text">{{user.enterprise.enterpriseName}}</text>
+                    <text wx:if="{{user.consumer.enterpriseDepartmentNumber != null}}"
+                        class="enterprise_text">{{user.enterprise.enterpriseName}}</text>
                     <text wx:else class="enterprise_text">未认证企业用户</text>
-                    <image wx:if="{{user.consumer.enterpriseDepartmentNumber != null}}" class="enterprise_img" src="https://s2.loli.net/2021/12/14/khdyAIJtlzjrbDV.png"></image>
+                    <image wx:if="{{user.consumer.enterpriseDepartmentNumber != null}}" class="enterprise_img"
+                        src="https://s2.loli.net/2021/12/14/khdyAIJtlzjrbDV.png"></image>
                 </view>
                 <view class="department">
-                    <text wx:if="{{user.consumer.enterpriseDepartmentNumber != null}}" class="department_text">{{user.enterpriseDepartment.enterpriseDepartmentName}}</text>
+                    <text wx:if="{{user.consumer.enterpriseDepartmentNumber != null}}"
+                        class="department_text">{{user.enterpriseDepartment.enterpriseDepartmentName}}</text>
                 </view>
             </view>
             <view wx:if="{{user.consumer.nickName === '用户'}}" class="button_get" bindtap="getUserProfile">
@@ -28,9 +31,9 @@
         <text>我的订单</text>
     </view>
     <view class="order_info">
-            <!-- 全部订单 -->
+        <!-- 全部订单 -->
         <view class="all_order">
-            <navigator>
+            <navigator url="../../pages/allorder/allorder">
                 <image src="https://s2.loli.net/2021/12/14/sgbF1MjJhYLIe7c.png"></image>
                 <view>全部订单</view>
             </navigator>
@@ -44,7 +47,7 @@
         </view>
         <!-- 待收货订单 -->
         <view class="waitreceive_order">
-            <navigator>
+            <navigator url="plugin://kdPlugin/index?num=9885624794281&appName=WeIn">
                 <image src="https://s2.loli.net/2021/12/14/V7ahlJwTWnOvSyz.png"></image>
                 <view>待收货</view>
             </navigator>
@@ -77,21 +80,17 @@
 </view>
 <!-- 其它模块入口 -->
 <view class="other_wrap">
-    <navigator class="model0">
+    <!-- <navigator class="model0">
         <image class="model_img" src="https://s2.loli.net/2021/12/14/MBq9athRFJeXksd.png"></image>
         <view class="model_text">我的优惠券</view>
-    </navigator>
-    <navigator class="model">
+    </navigator> -->
+    <navigator class="model0">
         <image class="model_img" src="https://s2.loli.net/2021/12/14/wPR5Np4IgrlUH3X.png"></image>
         <view class="model_text">收藏夹</view>
     </navigator>
     <navigator class="model">
         <image class="model_img" src="https://s2.loli.net/2021/12/14/8bCwyeQutHDvE2m.png"></image>
         <view class="model_text">历史足迹</view>
-    </navigator>
-    <navigator class="model">
-        <image class="model_img" src="https://s2.loli.net/2021/12/14/TzXam3AwL4WUyq5.png"></image>
-        <view class="model_text">联系客服</view>
     </navigator>
     <navigator class="model">
         <image class="model_img" src="https://s2.loli.net/2021/12/14/xJoTVcqAi4eLHU7.png"></image>

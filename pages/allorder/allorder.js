@@ -1,41 +1,43 @@
 /*
  * @Author: your name
- * @Date: 2021-11-30 21:23:10
- * @LastEditTime: 2021-12-22 16:15:23
- * @LastEditors: your name
+ * @Date: 2021-12-22 17:09:34
+ * @LastEditTime: 2021-12-22 22:05:16
+ * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: \WeIn\pages\home\home.js
+ * @FilePath: \WeIn\pages\allorder\allorder.js
  */
-
+// pages/allorder/allorder.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    swiperlist: []
+    order: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //发送请求获取轮播图数据
-    var app = getApp()
+    var app = getApp();
+    var user = wx.getStorageSync('user');
+    var that = this;
+    wx.showLoading({
+      title: 'Loading...'
+    })
     wx.request({
-      url: app.globalData.host + 'advertisement.action',
-      success: (reslut) => {
-        console.log(reslut);
-        this.setData({
-          swiperlist: reslut.data
-        })
+      url: app.globalData.host + 'showAllOrder',
+      data: {
+        consumerId: user.consumer.consumerId
       },
-      fail: function () {
-        wx.showToast({
-          title: '发生了未知错误',
-          icon: 'fail',
-          duration: 2000
+      success(res) {
+        console.log(res);
+        wx.hideLoading();
+        that.setData({
+          order: res.data
         })
+        wx.setStorageSync('allorder', res.data);
       }
     })
   },
