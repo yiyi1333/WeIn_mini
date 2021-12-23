@@ -47,9 +47,17 @@
         </view>
         <!-- 待收货订单 -->
         <view class="waitreceive_order">
-            <navigator url="plugin://kdPlugin/index?num=9885624794281&appName=WeIn">
+            <navigator url="../../pages/waitreceiveorder/waitreceiveorder">
                 <image src="https://s2.loli.net/2021/12/14/V7ahlJwTWnOvSyz.png"></image>
                 <view>待收货</view>
+            </navigator>
+        </view>
+        <!-- 待评价订单 -->
+        <!-- https://s2.loli.net/2021/12/23/mBXsViD2U4PhuvC.png -->
+        <view class="evaluate_order">
+            <navigator>
+                <image src="https://s2.loli.net/2021/12/23/mBXsViD2U4PhuvC.png"></image>
+                <view>待评价</view>
             </navigator>
         </view>
         <!-- 退换货订单 -->
@@ -80,10 +88,6 @@
 </view>
 <!-- 其它模块入口 -->
 <view class="other_wrap">
-    <!-- <navigator class="model0">
-        <image class="model_img" src="https://s2.loli.net/2021/12/14/MBq9athRFJeXksd.png"></image>
-        <view class="model_text">我的优惠券</view>
-    </navigator> -->
     <navigator class="model0">
         <image class="model_img" src="https://s2.loli.net/2021/12/14/wPR5Np4IgrlUH3X.png"></image>
         <view class="model_text">收藏夹</view>

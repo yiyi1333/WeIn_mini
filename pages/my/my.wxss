@@ -101,6 +101,9 @@ page .order_info_wrap .order_info .waitreceive_order {
 page .order_info_wrap .order_info .exchanged_order {
   flex: 1;
 }
+page .order_info_wrap .order_info .evaluate_order {
+  flex: 1;
+}
 page .address_wrap {
   margin-top: 20rpx;
   margin-left: 3%;

@@ -1,12 +1,12 @@
 /*
  * @Author: your name
- * @Date: 2021-12-23 00:37:41
- * @LastEditTime: 2021-12-23 14:45:25
+ * @Date: 2021-12-22 17:09:34
+ * @LastEditTime: 2021-12-23 14:59:18
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: \WeIn\pages\orderdetail\orderdetail.js
+ * @FilePath: \WeIn\pages\allorder\allorder.js
  */
-// pages/orderdetail/orderdetail.js
+// pages/allorder/allorder.js
 Page({
 
   /**
@@ -20,42 +20,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //获取orderId;
-    const { orderId } = options;
-    console.log("orderId:" + orderId);
-    this.getOrderDetail(orderId);
-  },
-  getOrderDetail(orderId) {
     var app = getApp();
+    var user = wx.getStorageSync('user');
     var that = this;
     wx.showLoading({
       title: 'Loading...'
     })
     wx.request({
-      url: app.globalData.host + 'showOrderDetail',
+      url: app.globalData.host + 'showWaitReceiveOrder',
       data: {
-        orderid: orderId
+        consumerId: user.consumer.consumerId
       },
-      success: (res) => {
+      success(res) {
         console.log(res);
-        var date = res.data.orderDate;
-        var dates = date.split('T');
-        res.data.orderDate = dates[0];
-        var time = res.data.orderTime;
-        var times = time.split('T');
-        res.data.orderTime = times[1];
-        console.log(times);
+        wx.hideLoading();
         that.setData({
           order: res.data
-        });
-        wx.hideLoading();
-      },
-      fail: (res) => {
-        wx.showToast({
-          title: '服务器请求错误',
-          icon: 'error',
-          duration: 2000
         })
+        wx.setStorageSync('waitreceiveorder', res.data);
       }
     })
   },

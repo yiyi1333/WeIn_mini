@@ -119,18 +119,6 @@ page {
 .cart_content .cart_main .shop_wrap .btn_wrap {
   padding-top: 16rpx;
   padding-bottom: 16rpx;
-  display: flex;
-  align-items: center;
-  text-align: center;
-}
-.cart_content .cart_main .shop_wrap .btn_wrap .commit_btn {
-  flex: 1;
-}
-.cart_content .cart_main .shop_wrap .btn_wrap .returns_btn {
-  flex: 1;
-}
-.cart_content .cart_main .shop_wrap .btn_wrap .evaluate_btn {
-  flex: 1;
 }
 .footer_tool {
   position: fixed;

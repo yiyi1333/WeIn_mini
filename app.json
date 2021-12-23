@@ -12,7 +12,10 @@
     "pages/createorder/createorder",
     "pages/allorder/allorder",
     "pages/orderdetail/orderdetail",
-    "pages/orderwaitreceive/orderwaitreceive"
+    "pages/waitreceiveorder/waitreceiveorder",
+    "pages/waitpayorder/waitpayorder",
+    "pages/waitevaluateorder/waitevaluateorder",
+    "pages/after-sales/after-sales"
   ],
   "window": {
     "backgroundTextStyle": "dark",

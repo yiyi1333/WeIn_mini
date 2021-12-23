@@ -47,15 +47,11 @@
                     <view class="btn_wrap">
                         <!-- 确认收货按钮，当订单状态为待收货时出现 -->
                         <view class="commit_btn" wx:if="{{item.orderStatus == '待收货'}}">
-                            <button class="commit" type="primary" size="mini">确认收货</button>
+                            <button class="commit">确认收货</button>
                         </view>
                         <!-- 退换货按钮，当订单状态为已收货时出现 -->
                         <view class="returns_btn" wx:if="{{item.orderStatus == '已收货'}}">
-                            <button class="returns" size="mini">售后</button>
-                        </view>
-                        <!-- 当订单状态为已收货时出现 -->
-                        <view class="evaluate_btn" wx:if="{{item.orderStatus == '已收货'}}">
-                            <button class="evaluate" size="mini">评价</button>
+                            <button class="returns">售后</button>
                         </view>
                     </view>
                 </navigator>

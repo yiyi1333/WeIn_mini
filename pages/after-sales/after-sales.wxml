@@ -1,0 +1,39 @@
+<view class="page">
+    <from catchsubmit="formSubmit" catchreset="formReset">
+        <view class="contain">
+            <view class="num_wrap">
+                <text class="num">数量</text>
+                <view class="num_input">
+                    <slider bindchange="numchange" min="1" max="100" show-value value="5" />
+                </view>
+            </view>
+            <view class="descript_wrap">
+                <text class="descript">反馈描述</text>
+                <textarea height="5" placeholder="请填写描述" auto-focus confirm-type="done" style="margin-left: 10rpx;" />
+            </view>
+            <view class="img-wrap">
+                <view class="txt">上传图片</view>
+                <view class="imglist">
+                    <view class="item" wx:if="{{img != null}}">
+                        <image src="{{imgpath}}" alt="上传的图片"></image>
+                        <view class='delete' bindtap='deleteImg' data-index="{{index}}">
+                            <image src="https://s2.loli.net/2021/12/23/aTjKfWvUFOp1tJR.png"></image>
+                        </view>
+                    </view>
+                    <view class="last-item" wx:if="{{img == null}}" bindtap="bindUpload">
+                        <text class="sign">+</text>
+                    </view>
+                </view>
+            </view>
+            <view class="btn_wrap">
+                <view class="sub_btn">
+                    <button formType="submit" bindtap="formSubmit" type="primary"
+                        style="padding-top: 10rpx;">提交</button>
+                </view>
+                <view class="res_btn">
+                    <button formType="reset" bindtap="formReset" style="padding-top: 10rpx;">重置</button>
+                </view>
+            </view>
+        </view>
+    </from>
+</view>
