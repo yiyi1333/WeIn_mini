@@ -10,7 +10,9 @@
     "pages/payment/payment",
     "pages/address/address",
     "pages/createorder/createorder",
-    "pages/allorder/allorder"
+    "pages/allorder/allorder",
+    "pages/orderdetail/orderdetail",
+    "pages/orderwaitreceive/orderwaitreceive"
   ],
   "window": {
     "backgroundTextStyle": "dark",
