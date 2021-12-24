@@ -61,20 +61,9 @@ page {
   color: #c93636;
   font-size: 34rpx;
 }
-.cart_content .cart_main .shop_wrap .cart_item .cartarea .cart_info_wrap .goods_price_wrap .cart_bum_tool {
-  display: flex;
-}
-.cart_content .cart_main .shop_wrap .cart_item .cartarea .cart_info_wrap .goods_price_wrap .cart_bum_tool .num_edit {
-  width: 66rpx;
-  height: 66rpx;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1rpx solid #ccc;
-  border-radius: 10rpx;
-}
 .cart_content .cart_main .shop_wrap .cart_item .cartarea .cart_info_wrap .goods_price_wrap .cart_bum_tool .goods_num {
-  width: 56rpx;
+  color: #666;
+  width: 320rpx;
   height: 56rpx;
   display: flex;
   justify-content: center;

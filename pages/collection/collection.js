@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-24 13:27:30
- * @LastEditTime: 2021-12-24 16:36:56
+ * @LastEditTime: 2021-12-24 22:04:53
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\collection\collection.js
@@ -36,6 +36,14 @@ Page({
         wx.hideLoading();
         //查询成功
         if (res.data != '查询失败') {
+          for (var i = 0; i < res.data.length; i++) {
+            var d = res.data[i].date;
+            var ds = d.split('T');
+            res.data[i].date = ds[0];
+            var t = res.data[i].time;
+            var ts = t.split('T');
+            res.data[i].time = ts[1];
+          }
           that.setData({
             collection: res.data
           })
