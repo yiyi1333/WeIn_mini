@@ -35,7 +35,16 @@ page {
 .page .contain .descript_wrap .descript {
   padding-left: 10rpx;
 }
-.page .contain .descript_wrap .descript_input {
+.page .contain .descript_wrap .descript_area {
+  padding-left: 10rpx;
+  padding-top: 10rpx;
+}
+.page .contain .descript_wrap .descript_area .descript_border {
+  padding: 10rpx;
+  border: solid 2rpx #1bb4ac;
+  border-radius: 6rpx;
+}
+.page .contain .descript_wrap .descript_area .descript_border .descript_input {
   width: 100%;
 }
 .page .contain .btn_wrap {

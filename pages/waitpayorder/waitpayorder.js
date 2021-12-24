@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-12-23 15:24:00
+ * @LastEditTime: 2021-12-24 15:51:56
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \WeIn\pages\waitpayorder\waitpayorder.js
+ */
 // pages/waitpayorder/waitpayorder.js
 Page({
 
@@ -5,14 +13,42 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    order: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var app = getApp();
+    var user = wx.getStorageSync('user');
+    var that = this;
+    wx.showLoading({
+      title: 'Loading...'
+    })
+    wx.request({
+      url: app.globalData.host + 'showWaitPayOrder',
+      data: {
+        consumerId: user.consumer.consumerId
+      },
+      success(res) {
+        console.log(res);
+        wx.hideLoading();
+        that.setData({
+          order: res.data
+        })
+        wx.setStorageSync('waitreceiveorder', res.data);
+      }
+    })
+  },
+  Toafter_sales(option) {
+    console.log(option);
+    wx.navigateTo({
+      events: {
+        orderId: orderId
+      },
+      url: "../../pages/after-sales/after-sales"
+    })
   },
 
   /**

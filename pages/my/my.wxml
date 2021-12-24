@@ -40,7 +40,7 @@
         </view>
         <!-- 待付款 -->
         <view class="waitpay_order">
-            <navigator>
+            <navigator url="../../pages/waitpayorder/waitpayorder">
                 <image src="https://s2.loli.net/2021/12/14/NmHA8eq1rYKhVPt.png"></image>
                 <view>待付款</view>
             </navigator>
@@ -55,7 +55,7 @@
         <!-- 待评价订单 -->
         <!-- https://s2.loli.net/2021/12/23/mBXsViD2U4PhuvC.png -->
         <view class="evaluate_order">
-            <navigator>
+            <navigator url="../../pages/waitevaluateorder/waitevaluateorder">
                 <image src="https://s2.loli.net/2021/12/23/mBXsViD2U4PhuvC.png"></image>
                 <view>待评价</view>
             </navigator>
@@ -88,15 +88,15 @@
 </view>
 <!-- 其它模块入口 -->
 <view class="other_wrap">
-    <navigator class="model0">
+    <navigator class="model0" url="../../pages/collection/collection">
         <image class="model_img" src="https://s2.loli.net/2021/12/14/wPR5Np4IgrlUH3X.png"></image>
         <view class="model_text">收藏夹</view>
     </navigator>
-    <navigator class="model">
+    <navigator class="model" url="../../pages/history/history">
         <image class="model_img" src="https://s2.loli.net/2021/12/14/8bCwyeQutHDvE2m.png"></image>
         <view class="model_text">历史足迹</view>
     </navigator>
-    <navigator class="model">
+    <navigator class="model" url="../../pages/feedback/feedback">
         <image class="model_img" src="https://s2.loli.net/2021/12/14/xJoTVcqAi4eLHU7.png"></image>
         <view class="model_text">意见反馈</view>
     </navigator>

@@ -58,9 +58,9 @@
                         </view>
                     </view>
                     <view class="order_total_price">
-                        <view class="original_price"><text>原价: </text><text class="num">{{item.goodTotalPrices}}</text>
+                        <view class="original_price"><text>原价: ￥</text><text class="num">{{item.goodTotalPrices}}</text>
                         </view>
-                        <view class="real_price"><text>实付: </text><text class="num">{{item.actuaLAmountPaid}}</text>
+                        <view class="real_price"><text>实付: ￥</text><text class="num">{{item.actuaLAmountPaid}}</text>
                         </view>
                     </view>
                 </view>

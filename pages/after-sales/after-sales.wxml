@@ -16,8 +16,12 @@
             </view>
             <view class="descript_wrap">
                 <text class="descript">反馈描述</text>
-                <textarea height="5" placeholder="请填写描述" auto-focus confirm-type="done" style="margin-left: 10rpx;"
-                    bindinput="input_descript" />
+                <view class="descript_area">
+                    <view class="descript_border">
+                        <textarea height="5" placeholder="请填写描述" auto-focus confirm-type="done"
+                            style="margin-left: 10rpx;" bindinput="input_descript" />
+                    </view>
+                </view>
             </view>
             <view class="img-wrap">
                 <view class="txt">上传图片</view>
