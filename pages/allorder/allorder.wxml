@@ -44,7 +44,9 @@
                         <!-- 当订单状态为已收货时出现 -->
                         <view class="evaluate_btn">
                             <!-- <button class="evaluate" size="mini">评价</button> -->
-                            <navigator class="evaluate" url="">评价</navigator>
+                            <navigator class="evaluate"
+                                url="../../pages/evaluation/evaluation?orderId={{item.orderId}}&goodsId={{j.goods.goodsId}}">
+                                评价</navigator>
                         </view>
                     </view>
                 </view>

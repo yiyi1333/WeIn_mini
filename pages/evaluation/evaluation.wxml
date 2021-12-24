@@ -1,2 +1,58 @@
-<!--pages/evaluation/evaluation.wxml-->
-<text>pages/evaluation/evaluation.wxml</text>
+<view class="page">
+    <from catchsubmit="formSubmit" catchreset="formReset">
+        <view class="contain">
+            <view class="rate_wrap">
+                <text>评分: </text>
+                <radio-group bindchange="ratechange">
+                    <view class="rate_group">
+                        <view class="rate_item">
+                            <radio value="1">1</radio>
+                        </view>
+                        <view class="rate_item">
+                            <radio value="2">2</radio>
+                        </view>
+                        <view class="rate_item">
+                            <radio value="3">3</radio>
+                        </view>
+                        <view class="rate_item">
+                            <radio value="4">4</radio>
+                        </view>
+                        <view class="rate_item">
+                            <radio value="5">5</radio>
+                        </view>
+                    </view>
+                </radio-group>
+
+            </view>
+            <view class="descript_wrap">
+                <text class="descript">反馈描述</text>
+                <view class="descript_area">
+                    <view class="descript_border">
+                        <textarea height="5" placeholder="请填写描述" auto-focus confirm-type="done"
+                            style="margin-left: 10rpx;" bindinput="input_descript" />
+                    </view>
+                </view>
+            </view>
+            <view class="img-wrap">
+                <view class="txt">上传图片</view>
+                <view class="imglist">
+                    <view class="item" wx:if="{{imgpath != null}}">
+                        <image src="{{imgpath}}" alt="上传的图片"></image>
+                        <view class='delete' bindtap='deleteImg' data-index="{{index}}">
+                            <image src="https://s2.loli.net/2021/12/23/aTjKfWvUFOp1tJR.png"></image>
+                        </view>
+                    </view>
+                    <view class="last-item" wx:if="{{imgpath == null}}" bindtap="bindUpload">
+                        <text class="sign">+</text>
+                    </view>
+                </view>
+            </view>
+            <view class="btn_wrap">
+                <view class="sub_btn">
+                    <button formType="submit" bindtap="formSubmit" type="primary"
+                        style="padding-top: 10rpx;">提交</button>
+                </view>
+            </view>
+        </view>
+    </from>
+</view>
