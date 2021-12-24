@@ -62,7 +62,7 @@
         </view>
         <!-- 退换货订单 -->
         <view class="exchanged_order">
-            <navigator>
+            <navigator url="../../pages/rightsprocess/rightprocess">
                 <image src="https://s2.loli.net/2021/12/14/V2TeSDMA9CIgX7O.png"></image>
                 <view>售后</view>
             </navigator>

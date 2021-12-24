@@ -1,24 +1,26 @@
 <view class="cart_content">
   <view class="cart_main">
     <view class="address_wrap">
-        <view wx:if="{{address==null}}" class="add_btn_wrap">
-            <navigator bindtap="getAddress">
-                <view class="address_btn"><text>选择收货地址</text></view>
-            </navigator>
+      <view wx:if="{{address==null}}" class="add_btn_wrap">
+        <navigator bindtap="getAddress">
+          <view class="address_btn"><text>选择收货地址</text></view>
+        </navigator>
+      </view>
+      <view wx:else class="add_Info_wrap">
+        <view class="address_info">
+          <view class="address_person">收件人: {{address.userName}}</view>
+          <view class="address_phone">联系方式: {{address.telNumber}}</view>
+          <view class="address_place">{{provinceName}} {{address.cityName}} {{address.countyName}}
+            {{address.detailInfo}} </view>
         </view>
-        <view wx:else class="add_Info_wrap">
-            <view class="address_info">
-                <view class="address_person">收件人: {{address.userName}}</view>
-                <view class="address_phone">联系方式: {{address.telNumber}}</view>
-                <view class="address_place">{{provinceName}} {{address.cityName}} {{address.countyName}} {{address.detailInfo}} </view>
-            </view>
-            <view class="modfiy_btn">
-                <navigator bindtap="getAddress">
-                    <image style="width:60rpx; height:60rpx;"class="modfiy_add" src="https://s2.loli.net/2021/12/17/bjgtqd1iJ28v5Wm.png"></image>
-                </navigator>
-            </view>
+        <view class="modfiy_btn">
+          <navigator bindtap="getAddress">
+            <image style="width:60rpx; height:60rpx;" class="modfiy_add"
+              src="https://s2.loli.net/2021/12/17/bjgtqd1iJ28v5Wm.png"></image>
+          </navigator>
+        </view>
 
-        </view>
+      </view>
     </view>
     <block wx:if="{{shops.length!=0}}">
       <view class="shop_wrap" wx:for="{{shops}}" wx:key="{{shop.shopId}}">
@@ -36,7 +38,10 @@
           <view class="cart_info_wrap">
             <view class="goods_name">{{j.goods.goodsName}}</view>
             <view class="goods_price_wrap">
-              <view class="goods_price">￥{{j.goods.goodsPrice}}</view>
+              <view class="goods_price" wx:if="{{j.goods.goodsRealPrice == 0}}">￥{{j.goods.goodsPrice}}</view>
+              <view class="goods_price" wx:if="{{j.goods.goodsRealPrice != 0}}" style="text-decoration: line-through;">
+                ￥{{j.goods.goodsPrice}}</view>
+              <view class="goods_price" wx:if="{{j.goods.goodsRealPrice != 0}}">￥{{j.goods.goodsRealPrice}}</view>
               <view class="cart_bum_tool">
                 <view class="goods_num">数量: {{j.goodsnum}}</view>
               </view>

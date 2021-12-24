@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-17 16:39:44
- * @LastEditTime: 2021-12-23 13:42:52
+ * @LastEditTime: 2021-12-25 03:37:22
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\createorder\createorder.js
@@ -28,7 +28,13 @@ Page({
     var sum = 0;
     for (var i = 0; i < goods.length; i++) {
       for (var j = 0; j < goods[i].goodslist.length; j++) {
-        sum += goods[i].goodslist[j].goods.goodsPrice * goods[i].goodslist[j].goodsnum;
+        if (goods[i].goodslist[j].goods.goodsRealPrice != 0) {
+          sum += goods[i].goodslist[j].goods.goodsRealPrice * goods[i].goodslist[j].goodsnum;
+        }
+        else {
+          sum += goods[i].goodslist[j].goods.goodsPrice * goods[i].goodslist[j].goodsnum;
+        }
+
       }
     }
     this.setData({

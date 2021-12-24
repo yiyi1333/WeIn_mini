@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-22 17:09:34
- * @LastEditTime: 2021-12-23 22:19:58
+ * @LastEditTime: 2021-12-25 02:01:56
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\allorder\allorder.js
@@ -50,7 +50,40 @@ Page({
       url: "../../pages/after-sales/after-sales"
     })
   },
-
+  confirm(event) {
+    var orderId = event.currentTarget.dataset.value;
+    var app = getApp();
+    var user = wx.getStorageSync('user');
+    var that = this;
+    wx.showModal({
+      title: "提示",
+      content: "确认已收到包裹",
+      success: function (res) {
+        //点击确认
+        if (res.confirm) {
+          //显示等待提示
+          wx.showLoading({
+            title: '确认收货中...'
+          })
+          //发送请求
+          wx.request({
+            url: app.globalData.host + 'confirmReceipt',
+            data: {
+              orderid: orderId
+            },
+            success(res) {
+              wx.hideLoading();
+              wx.showToast({
+                title: res.data,
+                icon: 'success',
+                duration: 2000
+              });
+            }
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

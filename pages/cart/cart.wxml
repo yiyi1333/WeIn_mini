@@ -27,7 +27,10 @@
           <view class="cart_info_wrap">
             <view class="goods_name">{{j.goods.goodsName}}</view>
             <view class="goods_price_wrap">
-              <view class="goods_price">￥{{j.goods.goodsPrice}}</view>
+              <view class="goods_price" wx:if="{{j.goods.goodsRealPrice == 0}}">￥{{j.goods.goodsPrice}}</view>
+              <view class="goods_price" wx:if="{{j.goods.goodsRealPrice != 0}}" style="text-decoration: line-through;">
+                ￥{{j.goods.goodsPrice}}</view>
+              <view class="goods_price" wx:if="{{j.goods.goodsRealPrice != 0}}">￥{{j.goods.goodsRealPrice}}</view>
               <view class="cart_bum_tool">
                 <view class="num_edit" bindtap="ItemNumEdit" data-id="{{j.goods.goodsId}}" data-op="{{-1}}">-</view>
                 <view class="goods_num">{{j.goodsnum}}</view>

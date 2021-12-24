@@ -67,7 +67,8 @@
                 <view class="btn_wrap">
                     <!-- 确认收货按钮，当订单状态为待收货时出现 -->
                     <view class="commit_btn" wx:if="{{item.orderStatus == '待收货'}}">
-                        <button class="commit" type="primary" size="mini">确认收货</button>
+                        <button class="commit" type="primary" size="mini" bindtap="confirm"
+                            data-value="{{item.orderId}}">确认收货</button>
                     </view>
                 </view>
             </view>

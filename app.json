@@ -19,7 +19,8 @@
     "pages/certification/certification",
     "pages/collection/collection",
     "pages/history/history",
-    "pages/evaluation/evaluation"
+    "pages/evaluation/evaluation",
+    "pages/rightsprocess/rightprocess"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -37,12 +38,6 @@
         "iconPath": "icon/index.png",
         "selectedIconPath": "icon/select_index.png",
         "text": "首页"
-      },
-      {
-        "pagePath": "pages/classify/classify",
-        "iconPath": "icon/classify.png",
-        "selectedIconPath": "icon/select_classify.png",
-        "text": "分类"
       },
       {
         "pagePath": "pages/cart/cart",

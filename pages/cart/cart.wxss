@@ -65,7 +65,7 @@ page {
 }
 .cart_content .cart_main .shop_wrap .cart_item .cart_info_wrap .goods_price_wrap .goods_price {
   color: #c93636;
-  font-size: 34rpx;
+  font-size: 30rpx;
 }
 .cart_content .cart_main .shop_wrap .cart_item .cart_info_wrap .goods_price_wrap .cart_bum_tool {
   display: flex;

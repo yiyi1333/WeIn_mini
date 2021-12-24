@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-23 15:53:36
- * @LastEditTime: 2021-12-24 16:10:43
+ * @LastEditTime: 2021-12-24 23:19:41
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\after-sales\after-sales.js
@@ -157,6 +157,9 @@ Page({
         that.setData({
           imgpath: tempFilePaths[0]
         });
+        wx.showLoading({
+          title: '上传中',
+        });
         wx.uploadFile({
           url: app.globalData.host + "Upload",
           filePath: tempFilePaths[0],
@@ -167,6 +170,7 @@ Page({
           //成功上传图片
           success: function (res) {
             if (res.statusCode == 200) {
+              wx.hideLoading();
               wx.showToast({
                 title: "上传成功",
                 icon: "none",

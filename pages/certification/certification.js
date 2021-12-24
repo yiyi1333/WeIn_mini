@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-24 13:27:30
- * @LastEditTime: 2021-12-24 14:22:37
+ * @LastEditTime: 2021-12-25 01:25:14
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE  
  * @FilePath: \WeIn\pages\certification\certification.js
@@ -22,7 +22,7 @@ Page({
    */
   onLoad: function (options) {
     var user = wx.getStorageSync('user');
-    if (user.consumer.name != null && user.consumer.idCardNumber != null && user.consumer.name != '' && user.consumer.idCardNumber != '') {
+    if (user.consumer.certification == 1) {
       wx.showToast({
         title: '已实名',
         icon: 'success',

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-11-30 16:34:19
- * @LastEditTime: 2021-12-22 20:00:02
+ * @LastEditTime: 2021-12-25 04:55:24
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\cart\cart.js
@@ -94,12 +94,56 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var shops = wx.getStorageSync('shops');
-    this.setData({
-      shops: shops
+    //获取购物车数据
+    var app = getApp();
+    var that = this;
+    var user = wx.getStorageSync('user');
+    wx.request({
+      url: app.globalData.host + 'getCart',
+      data: {
+        consumerId: user.consumer.consumerId
+      },
+      success: (result) => {
+        console.log(result);
+        this.setData({
+          cart: result.data
+        })
+        wx.setStorageSync('cartInfo', result.data);
+        //将复选框状态初始化为未选中
+        var cart = result.data;
+        var shops = [];
+        for (var i = 0; i < cart.length; i++) {
+          var shop = {
+            shop: cart[i].shop,
+            goodslist: [],
+            checked: false
+          };
+          var glist = cart[i].goodsList;
+          for (var j = 0; j < glist.length; j++) {
+            var goods = {
+              goods: glist[j].goods,
+              goodsnum: glist[j].goodsNum,
+              checked: false
+            };
+            shop.goodslist.push(goods);
+          }
+          shops.push(shop);
+        }
+        wx.hideLoading();
+        this.setData({
+          shops: shops
+        })
+        wx.setStorageSync('shops', shops);
+        this.calculatePrice();
+      },
+      fail: function () {
+        wx.showToast({
+          title: '发生了未知错误',
+          icon: 'fail',
+          duration: 2000
+        })
+      }
     })
-    this.updateAllcheck();
-    this.calculatePrice();
   },
 
   /**
@@ -108,13 +152,27 @@ Page({
   onHide: function () {
     var shops = this.data.shops;
     wx.setStorageSync('shops', shops);
+    //更新后台数据
+    var app = getApp();
+    var user = wx.getStorageSync('user');
+    var that = this;
+    wx.request({
+      url: app.globalData.host + 'updateCart',
+      data: {
+        shopsList: that.data.shops,
+        consumerId: user.consumer.consumerId
+      },
+      success(res) {
+        console.log(res);
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    //更新后台数据
+
   },
 
   /**
@@ -173,7 +231,12 @@ Page({
       for (var j = 0; j < gl.length; j++) {
         //计算总价
         if (gl[j].checked) {
-          totalPrice += gl[j].goods.goodsPrice * gl[j].goodsnum;
+          if (gl[j].goods.goodsRealPrice != 0) {
+            totalPrice += gl[j].goods.goodsRealPrice * gl[j].goodsnum;
+          }
+          else {
+            totalPrice += gl[j].goods.goodsPrice * gl[j].goodsnum;
+          }
         }
       }
     }

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-11-30 21:23:10
- * @LastEditTime: 2021-12-24 00:45:00
+ * @LastEditTime: 2021-12-24 23:16:02
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\home\home.js
@@ -20,6 +20,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: 'Loading...',
+    });
     //发送请求获取轮播图数据
     var app = getApp()
     wx.request({
@@ -29,6 +32,7 @@ Page({
         this.setData({
           swiperlist: reslut.data
         })
+        wx.hideLoading();
       },
       fail: function () {
         wx.showToast({

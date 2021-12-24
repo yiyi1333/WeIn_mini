@@ -1,0 +1,67 @@
+<view class="cart_content">
+    <view class="cart_main">
+        <block wx:if="{{Info.length!=0}}">
+            <view class="shop_wrap" wx:for="{{Info}}" wx:key="{{safeGuardingRightsId}}">
+                <view class="shop">
+                    <view class="shop_name">
+                        <navigator>
+                            <view class="shopname">
+                                编号: {{item.safeGuardingRightsId}}
+                            </view>
+                        </navigator>
+                    </view>
+                </view>
+                <view class="cart_item">
+                    <view class="cartarea">
+                        <!-- 商品图片 -->
+                        <navigator class="cart_imt_wrap" url="../../pages/detail/detail?goodsId={{item.goods.goodsId}}">
+                            <image mode="widthFix" src="{{item.goods.goodsImage}}"></image>
+                        </navigator>
+                        <!-- 商品信息 -->
+                        <view class="cart_info_wrap">
+                            <view class="goods_name">{{item.goods.goodsName}}</view>
+                            <view class="goods_price_wrap">
+                                <view class="goods_price"></view>
+                                <view class="cart_bum_tool">
+                                    <view class="goods_num">×{{item.safeGuardingRightsNum}}</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <!-- 维权信息 -->
+                    <view class="saferights_wrap">
+                        <view class="saferights_img"
+                            wx:if="{{item.safeGuardingRightsImage != null || item.safeGuardingRightsImage != ''}}">
+                            <image mode="widthFix" src="{{item.safeGuardingRightsImage}}"></image>
+                        </view>
+                        <view class="saferights_detail">
+                            <view class="text_area">
+                                <view class="text">{{item.safeGuardingRightsDetails}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="order_Info">
+                    <view class="order_id_info">
+                        <view class="order_id">
+                            <text>状态:</text>
+                            <text class="orderid">{{item.safeGuardingRightsProgress}}</text>
+                        </view>
+                    </view>
+                    <!-- 按钮区域 -->
+                    <view class="one"
+                        wx:if="{{item.safeGuardingRightsProgress == '仅退款' || item.safeGuardingRightsProgress == '退货退款'}}">
+                        <view class="refuse_btn">
+                            <button size="mini" type="warn" bindtap="refuseTap"
+                                data-value="{{item.safeGuardingRightsId}}">拒绝</button>
+                        </view>
+                        <view class="accept_btn">
+                            <button size="mini" type="primary" bindtap="acceptTap"
+                                data-value="{{item.safeGuardingRightsId}}">接受</button>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>
