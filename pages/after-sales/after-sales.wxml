@@ -4,23 +4,31 @@
             <view class="num_wrap">
                 <text class="num">数量</text>
                 <view class="num_input">
-                    <slider bindchange="numchange" min="1" max="100" show-value value="5" />
+                    <slider bindchange="numchange" min="0" max="{{goodsnum}}" show-value value="0" />
                 </view>
+            </view>
+            <view class="type_wrap">
+                <text class="type_title">售后处理方式: </text>
+                <radio-group bindchange="typechange">
+                    <radio value="退款">退货退款</radio>
+                    <radio value="换货">仅退款</radio>
+                </radio-group>
             </view>
             <view class="descript_wrap">
                 <text class="descript">反馈描述</text>
-                <textarea height="5" placeholder="请填写描述" auto-focus confirm-type="done" style="margin-left: 10rpx;" />
+                <textarea height="5" placeholder="请填写描述" auto-focus confirm-type="done" style="margin-left: 10rpx;"
+                    bindinput="input_descript" />
             </view>
             <view class="img-wrap">
                 <view class="txt">上传图片</view>
                 <view class="imglist">
-                    <view class="item" wx:if="{{img != null}}">
+                    <view class="item" wx:if="{{imgpath != null}}">
                         <image src="{{imgpath}}" alt="上传的图片"></image>
                         <view class='delete' bindtap='deleteImg' data-index="{{index}}">
                             <image src="https://s2.loli.net/2021/12/23/aTjKfWvUFOp1tJR.png"></image>
                         </view>
                     </view>
-                    <view class="last-item" wx:if="{{img == null}}" bindtap="bindUpload">
+                    <view class="last-item" wx:if="{{imgpath == null}}" bindtap="bindUpload">
                         <text class="sign">+</text>
                     </view>
                 </view>
@@ -29,9 +37,6 @@
                 <view class="sub_btn">
                     <button formType="submit" bindtap="formSubmit" type="primary"
                         style="padding-top: 10rpx;">提交</button>
-                </view>
-                <view class="res_btn">
-                    <button formType="reset" bindtap="formReset" style="padding-top: 10rpx;">重置</button>
                 </view>
             </view>
         </view>

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-03 20:09:26
- * @LastEditTime: 2021-12-22 20:08:28
+ * @LastEditTime: 2021-12-24 13:31:11
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\detail\detail.js
@@ -13,7 +13,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goodobject: null
+    goodobject: null,
+    goodsId: null
   },
 
   /**
@@ -23,7 +24,11 @@ Page({
     //获取goodsID;
     const { goodsId } = options;
     console.log("goodsID:" + goodsId);
+    this.setData({
+      goodsId: goodsId
+    })
     this.getGoodsDetail(goodsId);
+    this.addhistory();
   },
 
   getGoodsDetail(goodsId) {
@@ -44,10 +49,57 @@ Page({
       fail: function () {
         wx.showToast({
           title: '发生了未知错误',
-          icon: 'fail',
+          icon: 'error',
           duration: 2000
         })
       }
+    })
+  },
+  //历史记录
+  addhistory() {
+    var app = getApp();
+    var user = wx.getStorageSync('user');
+    var goodsId = this.data.goodsId;
+    wx.request({
+      url: app.globalData.host + 'addBrowsingHistory',
+      data: {
+        goodsId: goodsId,
+        customerId: user.consumer.consumerId
+      },
+      success(res) {
+        console.log(res);
+      },
+    })
+  },
+  //收藏商品
+  collect() {
+    var app = getApp();
+    var user = wx.getStorageSync('user');
+    var goodsId = this.data.goodsId;
+    wx.request({
+      url: app.globalData.host + 'addCollection',
+      data: {
+        goodsId: goodsId,
+        customerId: user.consumer.consumerId
+      },
+      success(res) {
+        //成功提示
+        if (res.data == '加入收藏夹成功') {
+          wx.showToast({
+            title: res.data,
+            icon: 'success',
+            duration: 2000
+          })
+        }
+        //失败提示
+        else {
+          wx.showToast({
+            title: res.data,
+            icon: 'error',
+            duration: 2000
+          })
+        }
+      },
     })
   },
 

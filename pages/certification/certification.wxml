@@ -1,0 +1,29 @@
+<view class="page">
+    <from catchsubmit="formSubmit" catchreset="formReset">
+        <view class="contain">
+            <view class="name_wrap">
+                <text>真实姓名: </text>
+                <view class="name_area">
+                    <view class="name_input">
+                        <input class="weui-input" type="text" confirm-type="next" bindinput="changename" />
+                    </view>
+
+                </view>
+            </view>
+            <view class="idnumber_wrap">
+                <text>身份证号码: </text>
+                <view class="idnumber_area">
+                    <view class="idnumber_input">
+                        <input class="weui-input" type="idcard" confirm-type="done" bindinput="changeidnumber" />
+                    </view>
+                </view>
+            </view>
+            <view class="btn_wrap">
+                <view class="sub_btn">
+                    <button formType="submit" bindtap="formSubmit" type="primary"
+                        style="padding-top: 10rpx;">提交</button>
+                </view>
+            </view>
+        </view>
+    </from>
+</view>

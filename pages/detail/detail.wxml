@@ -7,10 +7,10 @@
 <view class="goodprice" wx:if="{{goodobject.goodsRealPrice != 0}}">￥{{goodobject.goodsRealPrice}}</view>
 <view class="detail_description">
     <view class="goodsname">{{goodobject.goodsName}}</view>
-    <view class="goodscollect">
+    <navigator class="goodscollect" bindtap="collect">
         <text class="iconfont icon-shoucang"></text>
         <view class="collect_text">收藏</view>
-    </view>
+    </navigator>
 </view>
 
 <view class="bottom_tool">

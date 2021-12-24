@@ -81,7 +81,7 @@
 
 <!-- 实名认证入口 -->
 <view class="certification_wrap">
-    <navigator class="certification">
+    <navigator class="certification" url="../../pages/certification/certification">
         <image class="certification_img" src="https://s2.loli.net/2021/12/14/pw81xYlZm9LvSdN.png"></image>
         <view class="certification_text">实名认证</view>
     </navigator>

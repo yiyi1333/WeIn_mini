@@ -15,7 +15,11 @@
     "pages/waitreceiveorder/waitreceiveorder",
     "pages/waitpayorder/waitpayorder",
     "pages/waitevaluateorder/waitevaluateorder",
-    "pages/after-sales/after-sales"
+    "pages/after-sales/after-sales",
+    "pages/certification/certification",
+    "pages/collection/collection",
+    "pages/history/history",
+    "pages/evaluation/evaluation"
   ],
   "window": {
     "backgroundTextStyle": "dark",

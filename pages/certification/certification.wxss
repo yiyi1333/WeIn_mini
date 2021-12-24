@@ -13,30 +13,29 @@ page {
   background-color: white;
   margin: 18rpx;
 }
-.page .contain .num_wrap {
-  flex: 1;
+.page .contain .name_wrap {
+  padding-left: 10rpx;
   padding-bottom: 10rpx;
 }
-.page .contain .num_wrap .num {
-  padding-left: 10rpx;
+.page .contain .name_wrap .name_area {
+  padding: 10rpx;
+  border: solid 2rpx #1bb4ac;
+  border-radius: 6rpx;
 }
-.page .contain .type_wrap {
+.page .contain .name_wrap .name_area .name_input {
+  padding: 10rpx;
+}
+.page .contain .idnumber_wrap {
+  padding-left: 10rpx;
   padding-bottom: 10rpx;
-  padding-left: 10rpx;
 }
-.page .contain .type_wrap .type_title {
-  margin-bottom: 10rpx;
+.page .contain .idnumber_wrap .idnumber_area {
+  padding: 10rpx;
+  border: solid 2rpx #1bb4ac;
+  border-radius: 6rpx;
 }
-.page .contain .descript_wrap {
-  flex: 2;
-  padding-top: 20rpx;
-  padding-bottom: 20rpx;
-}
-.page .contain .descript_wrap .descript {
-  padding-left: 10rpx;
-}
-.page .contain .descript_wrap .descript_input {
-  width: 100%;
+.page .contain .idnumber_wrap .idnumber_area .name_input {
+  padding: 10rpx;
 }
 .page .contain .btn_wrap {
   flex: 2;

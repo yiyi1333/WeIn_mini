@@ -27,74 +27,94 @@ page{
                 }
             }
             .cart_item {
-            display: flex;
-            padding: 10rpx;
-            border-bottom: 1px solid #12a8a9;
-            .cart_check_wrap {
-                flex:1;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            checkbox-group {
-                checkbox {
-    
-                }
-            }
-            }
-    
-            .cart_imt_wrap {
-                flex:2;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            image {
-                width: 200rpx;
-            }
-            }
-    
-            .cart_info_wrap {
-                flex:4;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-around;
-            .goods_name {
-                display: -webkit-box;
-                overflow: hidden;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 2;
-                color: #666;
-            }
-    
-            .goods_price_wrap {
-                display: flex;
-                justify-content: space-between;
-                .goods_price {
-                    color: rgb(201, 54, 54);
-                    font-size: 34rpx;
-                }
-    
-                .cart_bum_tool {
+                .cartarea{
                     display: flex;
-                .num_edit {
-                    width: 66rpx;
-                    height: 66rpx;
+                    padding: 10rpx;
+                    // border-bottom: 1px solid #12a8a9;
+                    .cart_imt_wrap {
+                        flex:2;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        image {
+                            width: 200rpx;
+                        }
+                    }
+        
+                    .cart_info_wrap {
+                        flex:4;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-around;
+                        .goods_name {
+                            display: -webkit-box;
+                            overflow: hidden;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 2;
+                            color: #666;
+                        }
+            
+                        .goods_price_wrap {
+                            display: flex;
+                            justify-content: space-between;
+                            .goods_price {
+                                color: rgb(201, 54, 54);
+                                font-size: 34rpx;
+                            }
+                
+                            .cart_bum_tool {
+                                display: flex;
+                            .num_edit {
+                                width: 66rpx;
+                                height: 66rpx;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                border: 1rpx solid #ccc;
+                                border-radius: 10rpx;
+                            }
+                
+                            .goods_num {
+                                width: 56rpx;
+                                height: 56rpx;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+                            }
+                        }
+                    }
+                }
+                .btn_area{
+                    padding-top: 16rpx;
+                    padding-bottom: 16rpx;
                     display: flex;
-                    justify-content: center;
                     align-items: center;
-                    border: 1rpx solid #ccc;
-                    border-radius: 10rpx;
+                    text-align:center;
+                    // border-bottom: 1px solid #12a8a9;
+                    color: rgb(87, 189, 192);
+                    .commit_btn{
+                        flex: 1;
+                    }
+                    .returns_btn{
+                        flex: 1;
+                        font-size: 38rpx;
+                        font-weight: 600;
+                        border-radius: 6rpx;
+                        border: solid rgb(122, 170, 172) 2rpx;
+                        margin-left: 40rpx;
+                        margin-right: 40rpx;
+                    }
+                    .evaluate_btn{
+                        flex: 1;
+                        font-size: 38rpx;
+                        font-weight: 600;
+                        border-radius: 6rpx;
+                        border: solid rgb(122, 170, 172) 2rpx;
+                        margin-left: 40rpx;
+                        margin-right: 40rpx;
+                    }
                 }
-    
-                .goods_num {
-                    width: 56rpx;
-                    height: 56rpx;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-                }
-            }
-            }
             }
             .order_Info{
                 display: flex;
@@ -138,13 +158,8 @@ page{
                 display: flex;
                 align-items: center;
                 text-align:center;
+                color: rgb(87, 189, 192);
                 .commit_btn{
-                    flex: 1;
-                }
-                .returns_btn{
-                    flex: 1;
-                }
-                .evaluate_btn{
                     flex: 1;
                 }
             }
