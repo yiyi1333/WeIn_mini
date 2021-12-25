@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-17 16:39:44
- * @LastEditTime: 2021-12-25 03:37:22
+ * @LastEditTime: 2021-12-25 11:28:04
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\createorder\createorder.js
@@ -115,7 +115,8 @@ Page({
                         title: '下单成功',
                         icon: 'success',
                         duration: 2000
-                      })
+                      });
+                      wx.setStorageSync('tempcart', null);
                       setTimeout(function () {
                         wx.switchTab({
                           url: '/pages/cart/cart'
@@ -139,7 +140,7 @@ Page({
                           }
                           else {
                             console.log("取消订单回滚");
-                            wx.setStorageSync('shops', temp);
+                            // wx.setStorageSync('shops', temp);
                             wx.switchTab({
                               url: '/pages/cart/cart'
                             });

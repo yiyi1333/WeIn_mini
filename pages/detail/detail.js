@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-03 20:09:26
- * @LastEditTime: 2021-12-24 13:31:11
+ * @LastEditTime: 2021-12-25 12:09:41
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\detail\detail.js
@@ -73,34 +73,44 @@ Page({
   },
   //收藏商品
   collect() {
-    var app = getApp();
-    var user = wx.getStorageSync('user');
-    var goodsId = this.data.goodsId;
-    wx.request({
-      url: app.globalData.host + 'addCollection',
-      data: {
-        goodsId: goodsId,
-        customerId: user.consumer.consumerId
-      },
-      success(res) {
-        //成功提示
-        if (res.data == '加入收藏夹成功') {
-          wx.showToast({
-            title: res.data,
-            icon: 'success',
-            duration: 2000
-          })
-        }
-        //失败提示
-        else {
-          wx.showToast({
-            title: res.data,
-            icon: 'error',
-            duration: 2000
-          })
-        }
-      },
-    })
+    var goods = this.data.goodobject;
+    if (goods.collected == 0) {
+      var app = getApp();
+      var user = wx.getStorageSync('user');
+      var goodsId = this.data.goodsId;
+      wx.request({
+        url: app.globalData.host + 'addCollection',
+        data: {
+          goodsId: goodsId,
+          customerId: user.consumer.consumerId
+        },
+        success(res) {
+          //成功提示
+          if (res.data == '加入收藏夹成功') {
+            wx.showToast({
+              title: res.data,
+              icon: 'success',
+              duration: 2000
+            })
+          }
+          //失败提示
+          else {
+            wx.showToast({
+              title: res.data,
+              icon: 'error',
+              duration: 2000
+            })
+          }
+        },
+      })
+    } else {
+      wx.showToast({
+        title: "已经收藏过了",
+        icon: 'error',
+        duration: 2000
+      })
+    }
+
   },
 
   /**
@@ -180,6 +190,7 @@ Page({
             icon: "success",
             duration: 2000
           });
+          wx.setStorageSync('tempcart', null);
           wx.setStorageSync('cartInfo', data);
         }
       }

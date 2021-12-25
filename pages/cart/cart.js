@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-11-30 16:34:19
- * @LastEditTime: 2021-12-25 04:55:24
+ * @LastEditTime: 2021-12-25 11:53:20
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\cart\cart.js
@@ -94,56 +94,74 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    //获取购物车数据
-    var app = getApp();
-    var that = this;
-    var user = wx.getStorageSync('user');
-    wx.request({
-      url: app.globalData.host + 'getCart',
-      data: {
-        consumerId: user.consumer.consumerId
-      },
-      success: (result) => {
-        console.log(result);
-        this.setData({
-          cart: result.data
-        })
-        wx.setStorageSync('cartInfo', result.data);
-        //将复选框状态初始化为未选中
-        var cart = result.data;
-        var shops = [];
-        for (var i = 0; i < cart.length; i++) {
-          var shop = {
-            shop: cart[i].shop,
-            goodslist: [],
-            checked: false
-          };
-          var glist = cart[i].goodsList;
-          for (var j = 0; j < glist.length; j++) {
-            var goods = {
-              goods: glist[j].goods,
-              goodsnum: glist[j].goodsNum,
+    var temp = wx.getStorageSync('tempcart');
+    if (temp != null) {
+      for (var i = 0; i < temp.length; i++) {
+        temp[i].checked = false;
+        for (var j = 0; j < temp[i].goodslist.length; j++) {
+          temp[i].goodslist[j].checked = false;
+        }
+      }
+      this.setData({
+        shops: temp
+      })
+      //更新全选按钮
+      this.updateAllcheck();
+      //重新计算价格
+      this.calculatePrice();
+    }
+    else {
+      //获取购物车数据
+      var app = getApp();
+      var that = this;
+      var user = wx.getStorageSync('user');
+      wx.request({
+        url: app.globalData.host + 'getCart',
+        data: {
+          consumerId: user.consumer.consumerId
+        },
+        success: (result) => {
+          console.log(result);
+          this.setData({
+            cart: result.data
+          })
+          wx.setStorageSync('cartInfo', result.data);
+          //将复选框状态初始化为未选中
+          var cart = result.data;
+          var shops = [];
+          for (var i = 0; i < cart.length; i++) {
+            var shop = {
+              shop: cart[i].shop,
+              goodslist: [],
               checked: false
             };
-            shop.goodslist.push(goods);
+            var glist = cart[i].goodsList;
+            for (var j = 0; j < glist.length; j++) {
+              var goods = {
+                goods: glist[j].goods,
+                goodsnum: glist[j].goodsNum,
+                checked: false
+              };
+              shop.goodslist.push(goods);
+            }
+            shops.push(shop);
           }
-          shops.push(shop);
+          wx.hideLoading();
+          this.setData({
+            shops: shops
+          })
+          wx.setStorageSync('shops', shops);
+          this.calculatePrice();
+        },
+        fail: function () {
+          wx.showToast({
+            title: '发生了未知错误',
+            icon: 'fail',
+            duration: 2000
+          })
         }
-        wx.hideLoading();
-        this.setData({
-          shops: shops
-        })
-        wx.setStorageSync('shops', shops);
-        this.calculatePrice();
-      },
-      fail: function () {
-        wx.showToast({
-          title: '发生了未知错误',
-          icon: 'fail',
-          duration: 2000
-        })
-      }
-    })
+      })
+    }
   },
 
   /**

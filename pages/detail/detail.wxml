@@ -8,7 +8,8 @@
 <view class="detail_description">
     <view class="goodsname">{{goodobject.goodsName}}</view>
     <navigator class="goodscollect" bindtap="collect">
-        <text class="iconfont icon-shoucang"></text>
+        <text class="iconfont icon-shoucang" wx:if="{{goodobject.collected == 0}}"></text>
+        <text class="iconfont icon-shoucang2" wx:else></text>
         <view class="collect_text">收藏</view>
     </navigator>
 </view>
