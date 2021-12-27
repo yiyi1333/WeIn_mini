@@ -20,7 +20,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    host: 'https://b948-115-200-12-106.ngrok.io/spring_prj1_Web_exploded/',
+    host: 'https://9587-223-104-244-153.ngrok.io/WeIn_war_exploded/',
     code: null,
     appid: "wxc1b5e6fadc4b321a",
     // wxc8244d5df4e7c7c9

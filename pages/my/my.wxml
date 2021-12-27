@@ -56,7 +56,7 @@
         <!-- https://s2.loli.net/2021/12/23/mBXsViD2U4PhuvC.png -->
         <view class="evaluate_order">
             <navigator url="../../pages/waitevaluateorder/waitevaluateorder">
-                <image src="https://s2.loli.net/2021/12/23/mBXsViD2U4PhuvC.png"></image>
+                <image src="https://s2.loli.net/2021/12/25/6svWu4xYXVfRP8e.png"></image>
                 <view>待评价</view>
             </navigator>
         </view>

@@ -1,10 +1,12 @@
 <view class="detail_picture">
     <image mode="widthFix" src="{{goodobject.goodsImage}}" />
 </view>
-<view class="goodprice" wx:if="{{goodobject.goodsRealPrice == 0}}">￥{{goodobject.goodsPrice}}</view>
-<view class="goodprice" wx:if="{{goodobject.goodsRealPrice != 0}}" style="text-decoration: line-through; ">
+<view class="goodprice" wx:if="{{goodobject.goodsRealPrice == goodobject.goodsPrice}}">￥{{goodobject.goodsPrice}}</view>
+<view class="goodprice" wx:if="{{goodobject.goodsRealPrice != goodobject.goodsPrice}}"
+    style="text-decoration: line-through; ">
     ￥{{goodobject.goodsPrice}}</view>
-<view class="goodprice" wx:if="{{goodobject.goodsRealPrice != 0}}">￥{{goodobject.goodsRealPrice}}</view>
+<view class="goodprice" wx:if="{{goodobject.goodsRealPrice != goodobject.goodsPrice}}">￥{{goodobject.goodsRealPrice}}
+</view>
 <view class="detail_description">
     <view class="goodsname">{{goodobject.goodsName}}</view>
     <navigator class="goodscollect" bindtap="collect">

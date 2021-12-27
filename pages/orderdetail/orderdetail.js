@@ -25,6 +25,7 @@ Page({
     console.log("orderId:" + orderId);
     this.getOrderDetail(orderId);
   },
+
   getOrderDetail(orderId) {
     var app = getApp();
     var that = this;
@@ -56,6 +57,40 @@ Page({
           icon: 'error',
           duration: 2000
         })
+      }
+    })
+  },
+  confirm(event) {
+    var orderId = event.currentTarget.dataset.value;
+    var app = getApp();
+    var user = wx.getStorageSync('user');
+    var that = this;
+    wx.showModal({
+      title: "提示",
+      content: "确认已收到包裹",
+      success: function (res) {
+        //点击确认
+        if (res.confirm) {
+          //显示等待提示
+          wx.showLoading({
+            title: '确认收货中...'
+          })
+          //发送请求
+          wx.request({
+            url: app.globalData.host + 'confirmReceipt',
+            data: {
+              orderid: orderId
+            },
+            success(res) {
+              wx.hideLoading();
+              wx.showToast({
+                title: res.data,
+                icon: 'success',
+                duration: 2000
+              });
+            }
+          })
+        }
       }
     })
   },

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-11-30 16:34:19
- * @LastEditTime: 2021-12-25 11:53:20
+ * @LastEditTime: 2021-12-25 14:55:08
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \WeIn\pages\cart\cart.js
@@ -67,11 +67,11 @@ Page({
           shops.push(shop);
         }
         wx.hideLoading();
-        this.setData({
+        that.setData({
           shops: shops
         })
         wx.setStorageSync('shops', shops);
-        this.calculatePrice();
+        that.calculatePrice();
       },
       fail: function () {
         wx.showToast({
